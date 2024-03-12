@@ -11,6 +11,6 @@ package com.mycompany.teamproject;
 public class TeamProject {
 
     public static void main(String[] args) {
-        System.out.println("Hi");
+        System.out.println("Hello");
     }
 }
