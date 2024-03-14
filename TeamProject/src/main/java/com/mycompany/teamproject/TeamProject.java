@@ -4,6 +4,7 @@
 
 package com.mycompany.teamproject;
 
+
 /**
  *
  * @author green
@@ -11,6 +12,6 @@ package com.mycompany.teamproject;
 public class TeamProject {
 
     public static void main(String[] args) {
-        System.out.println("Liam smells");
+        
     }
 }

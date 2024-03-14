@@ -4,6 +4,9 @@
  */
 package com.mycompany.teamproject;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author green
@@ -36,5 +39,19 @@ public class DeniedEventsQueries {
     }
     
     // View all of the denied events
-    
+    public void getDeniedEvents() {
+        database.Connect("events.db");
+        String sql = "SELECT event_name, comment FROM denied_events;";
+        ResultSet rs = database.RunSQLQuery(sql);
+        try {
+            while(rs.next()) {
+                String name = rs.getString(1);
+                System.out.println(name+", ");
+                String comment = rs.getString(2);
+                System.out.println(comment+"\n");
+            } 
+        } catch(SQLException e) {
+            System.out.println("Failed to get denied events: " +e.getMessage());
+        }
+    }
 }
