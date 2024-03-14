@@ -6,6 +6,7 @@ package com.mycompany.teamproject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -29,29 +30,26 @@ public class PendingEventsQueries {
     }
     
     // View all of the pending events
-    public void getPendingEvents() {
+    public ArrayList<PendingEvents> getPendingEvents() {
         database.Connect("events.db");
         String sql = "SELECT event_name, event_desc, event_venue, location_name, music_name, event_date, event_price FROM events INNER JOIN locations ON locations.location_id = events.location_id INNER JOIN music ON music.music_id = events.music_id WHERE approved = 0;";
         ResultSet rs = database.RunSQLQuery(sql);
+        ArrayList<PendingEvents> results = new ArrayList<>();
         try {
             while(rs.next()) {
-                String name = rs.getString(1);
-                System.out.print(name+", ");
-                String desc = rs.getString(2);
-                System.out.print(desc+", ");
-                String venue = rs.getString(3);
-                System.out.print(venue+", ");
-                String location = rs.getString(4);
-                System.out.print(location+", ");
-                String music = rs.getString(5);
-                System.out.print(music+", ");
-                String date = rs.getString(6);
-                System.out.print(date+", ");
-                float price = rs.getFloat(7);
-                System.out.print(price+"\n"); 
+                PendingEvents pending = new PendingEvents();
+                pending.setName(rs.getString(1));
+                pending.setDesc(rs.getString(2));
+                pending.setVenue(rs.getString(3));
+                pending.setLocation(rs.getString(4));
+                pending.setMusic(rs.getString(5));
+                pending.setDate(rs.getString(6));
+                pending.setPrice(rs.getFloat(7));
+                results.add(pending);
             }
-            } catch(SQLException e) {
-                    System.out.println("Failed to select pending events: " +e.getMessage());
-                    }
+        } catch(SQLException e) {
+            System.out.println("Failed to select pending events: " +e.getMessage());
+        }
+        return results;
         }
 }

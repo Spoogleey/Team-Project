@@ -6,6 +6,7 @@ package com.mycompany.teamproject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -29,25 +30,24 @@ public class AnalyticsQueries {
     }
     
     // View the analytics for the events
-    public void getAnalytics() {
+    public ArrayList<Analytics> getAnalytics() {
         database.Connect("events.db");
         String sql = "SELECT event_name, tickets_sold, sales, booking_fee, profit FROM analytics INNER JOIN events ON events.event_id = analytics.event_id;";
         ResultSet rs = database.RunSQLQuery(sql);
+        ArrayList<Analytics> results = new ArrayList<>();
         try {
             while(rs.next()) {
-                String name = rs.getString(1);
-                System.out.println(name+", ");
-                int tickets = rs.getInt(2);
-                System.out.println(tickets+", ");
-                float sales = rs.getFloat(3);
-                System.out.println(sales+", ");
-                float booking = rs.getFloat(4);
-                System.out.println(booking+", ");
-                float profit = rs.getFloat(5);
-                System.out.println(profit+"\n");
+                Analytics analytics = new Analytics();
+                analytics.setName(rs.getString(1));
+                analytics.setTickets(rs.getInt(2));
+                analytics.setSales(rs.getFloat(3));
+                analytics.setBooking(rs.getFloat(4));
+                analytics.setProfit(rs.getFloat(5));
+                results.add(analytics);
             }
         } catch(SQLException e) {
-            System.out.println("Failed to get analytics: " +e.getMessage());
+            System.out.println("Failed to select analytics: " +e.getMessage());
         }
+        return results;
     }
 }

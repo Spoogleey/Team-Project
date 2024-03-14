@@ -6,6 +6,7 @@ package com.mycompany.teamproject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -39,19 +40,21 @@ public class DeniedEventsQueries {
     }
     
     // View all of the denied events
-    public void getDeniedEvents() {
+    public ArrayList<DeniedEvents> getDeniedEvents() {
         database.Connect("events.db");
-        String sql = "SELECT event_name, comment FROM denied_events;";
+        String sql = "SELECT event_name, comments FROM denied_events;";
         ResultSet rs = database.RunSQLQuery(sql);
+        ArrayList<DeniedEvents> results = new ArrayList<>();
         try {
             while(rs.next()) {
-                String name = rs.getString(1);
-                System.out.println(name+", ");
-                String comment = rs.getString(2);
-                System.out.println(comment+"\n");
-            } 
+                DeniedEvents denied = new DeniedEvents();
+                denied.setName(rs.getString(1));
+                denied.setComment(rs.getString(2));
+                results.add(denied);
+            }
         } catch(SQLException e) {
-            System.out.println("Failed to get denied events: " +e.getMessage());
+            System.out.println("Failed to select denied events: " +e.getMessage());
         }
+        return results;
     }
 }
