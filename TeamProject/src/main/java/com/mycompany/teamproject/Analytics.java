@@ -11,9 +11,9 @@ package com.mycompany.teamproject;
 public class Analytics {
     String name;
     int tickets;
-    float sales;
-    float booking;
-    float profit;
+    double sales;
+    double booking;
+    double profit;
 
     public String getName() {
         return name;
@@ -31,27 +31,27 @@ public class Analytics {
         this.tickets = tickets;
     }
 
-    public float getSales() {
+    public double getSales() {
         return sales;
     }
 
-    public void setSales(float sales) {
+    public void setSales(double sales) {
         this.sales = sales;
     }
 
-    public float getBooking() {
+    public double getBooking() {
         return booking;
     }
 
-    public void setBooking(float booking) {
+    public void setBooking(double booking) {
         this.booking = booking;
     }
 
-    public float getProfit() {
+    public double getProfit() {
         return profit;
     }
 
-    public void setProfit(float profit) {
+    public void setProfit(double profit) {
         this.profit = profit;
     }
 }

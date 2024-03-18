@@ -18,7 +18,7 @@ public class MusicQueries {
     // Add a new music genre
     public void addMusic(String music) {
         database.Connect("events.db");
-        String sql = "INSERT INTO music (music_name) VALUEA ('"+music+"');";
+        String sql = "INSERT INTO music (music_name) VALUES ('"+music+"');";
         boolean pass = database.RunSQL(sql);
         if(!pass) {
             System.out.println("Failed to add a new music genre.");

@@ -44,7 +44,7 @@ public class PendingEventsQueries {
                 pending.setLocation(rs.getString(4));
                 pending.setMusic(rs.getString(5));
                 pending.setDate(rs.getString(6));
-                pending.setPrice(rs.getFloat(7));
+                pending.setPrice(rs.getDouble(7));
                 results.add(pending);
             }
         } catch(SQLException e) {

@@ -15,7 +15,7 @@ public class ApprovedEvents {
     String location;
     String music;
     String date;
-    float price;
+    double price;
 
     public String getName() {
         return name;
@@ -65,11 +65,11 @@ public class ApprovedEvents {
         this.date = date;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 }

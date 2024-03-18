@@ -20,7 +20,7 @@ public class ApprovedEventsQueries {
     }
     
     // Add a new event into the events table
-    public void addEvent(String name, String desc, String venue, int location, int music, String date, float price) {
+    public void addEvent(String name, String desc, String venue, int location, int music, String date, double price) {
         database.Connect("events.db");
         String sql = "INSERT INTO events (event_name, event_desc, event_venue, location_id, music_id, event_date, event_price, approved) VALUES ('"+name+"', '"+desc+"', '"+venue+"', "+location+", "+music+", '"+date+"', "+price+", 0);";
         boolean pass = database.RunSQL(sql);
@@ -44,7 +44,7 @@ public class ApprovedEventsQueries {
                 approved.setLocation(rs.getString(4));
                 approved.setMusic(rs.getString(5));
                 approved.setDate(rs.getString(6));
-                approved.setPrice(rs.getFloat(7));
+                approved.setPrice(rs.getDouble(7));
                 results.add(approved);
             }
         } catch(SQLException e) {

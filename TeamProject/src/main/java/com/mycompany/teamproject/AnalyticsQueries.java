@@ -20,7 +20,7 @@ public class AnalyticsQueries {
     }
     
     // Add new analytics for an event
-    public void addAnalytics(int id, int tickets, float booking) {
+    public void addAnalytics(int id, int tickets, double booking) {
         database.Connect("events.db");
         String sql = "INSERT INTO analytics (event_id, tickets_sold, booking_fee) VALUES ("+id+", "+tickets+", "+booking+");";
         boolean pass = database.RunSQL(sql);
@@ -40,9 +40,9 @@ public class AnalyticsQueries {
                 Analytics analytics = new Analytics();
                 analytics.setName(rs.getString(1));
                 analytics.setTickets(rs.getInt(2));
-                analytics.setSales(rs.getFloat(3));
-                analytics.setBooking(rs.getFloat(4));
-                analytics.setProfit(rs.getFloat(5));
+                analytics.setSales(rs.getDouble(3));
+                analytics.setBooking(rs.getDouble(4));
+                analytics.setProfit(rs.getDouble(5));
                 results.add(analytics);
             }
         } catch(SQLException e) {
