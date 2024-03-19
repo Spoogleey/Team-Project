@@ -30,9 +30,9 @@ public class AnalyticsQueries {
     }
     
     // View the analytics for the events
-    public ArrayList<Analytics> getAnalytics() {
+    public ArrayList<Analytics> getAnalytics(String name) {
         database.Connect("events.db");
-        String sql = "SELECT event_name, tickets_sold, sales, booking_fee, profit, company_id FROM analytics INNER JOIN events ON events.event_id = analytics.event_id INNER JOIN companies ON companies.company_id = analytics.company_id;";
+        String sql = "SELECT event_name, tickets_sold, sales, booking_fee, profit, company_name FROM analytics INNER JOIN events ON events.event_id = analytics.event_id INNER JOIN companies ON companies.company_id = analytics.company_id WHERE company_name = '"+name+"';";
         ResultSet rs = database.RunSQLQuery(sql);
         ArrayList<Analytics> results = new ArrayList<>();
         try {
