@@ -14,6 +14,7 @@ public class Analytics {
     double sales;
     double booking;
     double profit;
+    String company;
 
     public String getName() {
         return name;
@@ -54,4 +55,13 @@ public class Analytics {
     public void setProfit(double profit) {
         this.profit = profit;
     }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+    
 }

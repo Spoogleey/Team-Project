@@ -20,9 +20,9 @@ public class AnalyticsQueries {
     }
     
     // Add new analytics for an event
-    public void addAnalytics(int id, int tickets, double booking) {
+    public void addAnalytics(int id, int tickets, double booking, int company) {
         database.Connect("events.db");
-        String sql = "INSERT INTO analytics (event_id, tickets_sold, booking_fee) VALUES ("+id+", "+tickets+", "+booking+");";
+        String sql = "INSERT INTO analytics (event_id, tickets_sold, booking_fee, company_id) VALUES ("+id+", "+tickets+", "+booking+", "+company+");";
         boolean pass = database.RunSQL(sql);
         if(!pass) {
             System.out.println("Failed to add new event analytics.");
@@ -32,7 +32,7 @@ public class AnalyticsQueries {
     // View the analytics for the events
     public ArrayList<Analytics> getAnalytics() {
         database.Connect("events.db");
-        String sql = "SELECT event_name, tickets_sold, sales, booking_fee, profit FROM analytics INNER JOIN events ON events.event_id = analytics.event_id;";
+        String sql = "SELECT event_name, tickets_sold, sales, booking_fee, profit, company_id FROM analytics INNER JOIN events ON events.event_id = analytics.event_id INNER JOIN companies ON companies.company_id = analytics.company_id;";
         ResultSet rs = database.RunSQLQuery(sql);
         ArrayList<Analytics> results = new ArrayList<>();
         try {
@@ -43,6 +43,7 @@ public class AnalyticsQueries {
                 analytics.setSales(rs.getDouble(3));
                 analytics.setBooking(rs.getDouble(4));
                 analytics.setProfit(rs.getDouble(5));
+                analytics.setCompany(rs.getString(6));
                 results.add(analytics);
             }
         } catch(SQLException e) {
