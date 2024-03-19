@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class TeamProject {
 
     public static void main(String[] args) {
-        AnalyticsPanel a = new AnalyticsPanel();
+        AnalyticsScreen a = new AnalyticsScreen();
         a.setVisible(true);
     }
     
