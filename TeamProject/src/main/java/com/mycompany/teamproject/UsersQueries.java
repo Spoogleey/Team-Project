@@ -24,4 +24,14 @@ public class UsersQueries {
             System.out.println("Failed to add a new user.");
         }
     }
+    
+    // Code to add company to user
+    public void addCompany(int company, int user) {
+        database.Connect("events.db");
+        String sql = "UPDATE users SET company_id = "+company+" WHERE user_id = "+user+";";
+        boolean pass = database.RunSQL(sql);
+        if(!pass) {
+            System.out.println("Failed to asign company to the user.");
+        }
+    }
 }
