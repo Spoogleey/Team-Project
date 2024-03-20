@@ -4,6 +4,9 @@
  */
 package com.mycompany.teamproject;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author w20009414
@@ -15,7 +18,6 @@ public class AnalyticsScreen extends javax.swing.JFrame {
      */
     public AnalyticsScreen() {
         initComponents();
-        TotalTicketsSold.setText("220");
         TotalLeft.setText("220");
         TotalRevenue.setText("220");
         TotalProfit.setText("$"+ "220");
@@ -23,18 +25,36 @@ public class AnalyticsScreen extends javax.swing.JFrame {
         jProgressBar2.setValue(93);
         jProgressBar3.setValue(72);
         jProgressBar4.setValue(45);
+        addRowToTable();
+        
     }
     
     public void addRowToTable() {
         DefaultTableModel model = (DefaultTableModel) allTable1.getModel();
-        AnalyticsQueries b = new AnalyticsQueries();
-        ArrayList<Analytics> array = b.getAnalytics("m");
+        AnalyticsQueries manager = new AnalyticsQueries(); // Create an instance of AnalyticsManager
+        String companyName = "Melody Mingle"; // The company name you're interested in
+        ArrayList<Analytics> analyticsData = manager.getAnalytics(companyName); // Call the method
         Object rowData[] = new Object[100];
-        for(int i = 0; i < array.size(); i++) {
-            rowData[0] = array.get(i).setName();
-            rowData[1] = array.get(i).setTickets();
+        // Assuming you want to print the fetched data
+        for(Analytics analytics : analyticsData) {
+            System.out.println("Event Name: " + analytics.getName() + ", Tickets Sold: " + analytics.getTickets());
+            Integer tickets = analytics.getTickets();
+            String hi = tickets.toString();
+            TotalTicketsSold.setText(hi);
+            rowData[0] = analytics.getName();
             model.addRow(rowData);
+            rowData[0] = "Tickets Sold: " + hi;
+            model.addRow(rowData);
+            rowData[0] = "Revenue: $" + analytics.getSales();
+            model.addRow(rowData);
+            rowData[0] = "Profit: $" + analytics.getProfit();
+            model.addRow(rowData);
+            // And so on for the other fields...
         }
+
+        
+    }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -317,19 +337,17 @@ public class AnalyticsScreen extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
         jLabel5.setText("Event 1");
 
+        allTable1.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
         allTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null}
             },
             new String [] {
-                "Title 1", "Title 2"
+                "Title 1"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -385,6 +403,9 @@ public class AnalyticsScreen extends javax.swing.JFrame {
             }
         });
         jScrollPane4.setViewportView(allTable2);
+        if (allTable2.getColumnModel().getColumnCount() > 0) {
+            allTable2.getColumnModel().getColumn(1).setHeaderValue("Title 2");
+        }
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -434,6 +455,9 @@ public class AnalyticsScreen extends javax.swing.JFrame {
             }
         });
         jScrollPane5.setViewportView(allTable3);
+        if (allTable3.getColumnModel().getColumnCount() > 0) {
+            allTable3.getColumnModel().getColumn(1).setHeaderValue("Title 2");
+        }
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -483,6 +507,9 @@ public class AnalyticsScreen extends javax.swing.JFrame {
             }
         });
         jScrollPane3.setViewportView(allTable4);
+        if (allTable4.getColumnModel().getColumnCount() > 0) {
+            allTable4.getColumnModel().getColumn(1).setHeaderValue("Title 2");
+        }
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -671,4 +698,5 @@ public class AnalyticsScreen extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
 }
