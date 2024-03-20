@@ -24,17 +24,18 @@ public class AnalyticsScreen extends javax.swing.JFrame {
         jProgressBar3.setValue(72);
         jProgressBar4.setValue(45);
     }
-    /**
+    
     public void addRowToTable() {
-        DefaultTableModel model = (DefaultTableModel) allTable.getModel();
+        DefaultTableModel model = (DefaultTableModel) allTable1.getModel();
         AnalyticsQueries b = new AnalyticsQueries();
         ArrayList<Analytics> array = b.getAnalytics("m");
         Object rowData[] = new Object[100];
         for(int i = 0; i < array.size(); i++) {
-            rowData[0] = array.get(i).getChorename();
+            rowData[0] = array.get(i).setName();
+            rowData[1] = array.get(i).setTickets();
             model.addRow(rowData);
         }
-    */
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
