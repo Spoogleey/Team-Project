@@ -16,6 +16,7 @@ public class ApprovedEvents {
     String music;
     String date;
     double price;
+    String company;
 
     public String getName() {
         return name;
@@ -72,4 +73,13 @@ public class ApprovedEvents {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+    
 }
