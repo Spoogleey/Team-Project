@@ -20,6 +20,7 @@ public class ApprovedPage extends javax.swing.JFrame {
      */
     public ApprovedPage() {
         initComponents();
+        database = new DatabaseConnection();
         UpdateApprovedTable();
     }
      private void UpdateApprovedTable(){
@@ -62,10 +63,10 @@ public class ApprovedPage extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         PendingTable = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        ApproveButton2 = new javax.swing.JButton();
+        DenyButton2 = new javax.swing.JButton();
+        ViewButton2 = new javax.swing.JButton();
+        GoBack2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,13 +83,13 @@ public class ApprovedPage extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(PendingTable);
 
-        jButton4.setText("jButton4");
+        ApproveButton2.setText("Approved");
 
-        jButton3.setText("jButton3");
+        DenyButton2.setText("Denied");
 
-        jButton1.setText("jButton1");
+        ViewButton2.setText("View");
 
-        jButton2.setText("jButton2");
+        GoBack2.setText("Go Back");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,13 +99,13 @@ public class ApprovedPage extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton4)
+                        .addComponent(ApproveButton2)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3)
+                        .addComponent(DenyButton2)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(ViewButton2)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2))
+                        .addComponent(GoBack2))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 725, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
@@ -115,10 +116,10 @@ public class ApprovedPage extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(ViewButton2)
+                    .addComponent(GoBack2)
+                    .addComponent(DenyButton2)
+                    .addComponent(ApproveButton2))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -161,11 +162,11 @@ public class ApprovedPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ApproveButton2;
+    private javax.swing.JButton DenyButton2;
+    private javax.swing.JButton GoBack2;
     private javax.swing.JTable PendingTable;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton ViewButton2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
