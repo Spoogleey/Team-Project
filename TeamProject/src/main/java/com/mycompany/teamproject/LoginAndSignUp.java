@@ -1,15 +1,15 @@
 
-package loginandsignup;
+//package loginandsignup;
 
-ass LoginAndSignUp {
+//ass LoginAndSignUp {
 
    
-    public static void main(String[] args) {
+    //public static void main(String[] args) {
         // TODO code application logic here
- Login LoginFrame = new Login();
- LoginFrame.setVisible(true);
- LoginFrame.pack();
- LoginFrame.setLocationRelativeTo(c:null);
-    }
+// Login LoginFrame = new Login();
+ //LoginFrame.setVisible(true);
+ //LoginFrame.pack();
+ //LoginFrame.setLocationRelativeTo(c:null);
+  //  }
     
-}
+//}
