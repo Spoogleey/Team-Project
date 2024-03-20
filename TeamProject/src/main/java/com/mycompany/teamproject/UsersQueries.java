@@ -16,9 +16,9 @@ public class UsersQueries {
     }
     
     // Code to add new user
-    public void addUser(String first, String second, String username, String password, String dob) {
+    public void addUser(String first, String second, String username, String password, String dob, String email) {
         database.Connect("events.db");
-        String sql = "INSERT INTO users (firstname, surname, username, password, dateofbirth) VALUES ('"+first+"', '"+second+"', '"+username+"', '"+password+"', '"+dob+"');";
+        String sql = "INSERT INTO users (firstname, surname, username, password, dateofbirth, email) VALUES ('"+first+"', '"+second+"', '"+username+"', '"+password+"', '"+dob+"', '"+email+"');";
         boolean pass = database.RunSQL(sql);
         if(!pass) {
             System.out.println("Failed to add a new user.");
