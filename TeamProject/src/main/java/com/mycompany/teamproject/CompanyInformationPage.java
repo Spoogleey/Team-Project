@@ -4,6 +4,7 @@
  */
 package com.mycompany.teamproject;
 
+import java.io.Console;
 import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,6 +20,7 @@ public class CompanyInformationPage extends javax.swing.JFrame {
      */
     public CompanyInformationPage() {
         initComponents();
+        CompanyInfoTable();
     }
     
     
@@ -27,14 +29,16 @@ public class CompanyInformationPage extends javax.swing.JFrame {
         database.Connect("events.db");
         //Query for pending events
         String sql = "SELECT company_name, location_name FROM events INNER JOIN locations ON locations.location_id = events.location_id INNER JOIN companies ON companies.company_id = events.company_id;";
+        System.out.println(sql);
         try{
             rs = database.RunSQLQuery(sql);
-        
+            
             while(rs.next()){
                 
                 String company = rs.getString("company_name");
                 String location = rs.getString("location_name");
-                
+                System.out.println(company);
+                System.out.println(location);
                 //String array to store the data in the jtable
                 
                 String tbData [] = {company, location};
@@ -42,6 +46,7 @@ public class CompanyInformationPage extends javax.swing.JFrame {
                 
                 //add the string array data into the jtable
                 InfoModel.addRow(tbData);
+                
             }
         } catch (Exception e){
                 
