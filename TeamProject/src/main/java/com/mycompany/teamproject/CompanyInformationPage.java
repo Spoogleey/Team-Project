@@ -13,13 +13,15 @@ import javax.swing.table.DefaultTableModel;
  * @author User
  */
 public class CompanyInformationPage extends javax.swing.JFrame {
-    DatabaseConnection database;
+    
+    private final DatabaseConnection database;
     ResultSet rs = null;
     /**
      * Creates new form CompanyInformationPage
      */
     public CompanyInformationPage() {
         initComponents();
+        database = new DatabaseConnection();
         CompanyInfoTable();
     }
     
@@ -28,15 +30,16 @@ public class CompanyInformationPage extends javax.swing.JFrame {
         
         database.Connect("events.db");
         //Query for pending events
-        String sql = "SELECT company_name, location_name FROM events INNER JOIN locations ON locations.location_id = events.location_id INNER JOIN companies ON companies.company_id = events.company_id;";
-        System.out.println(sql);
+        
         try{
+            String sql = "SELECT company_name, location_name FROM events INNER JOIN locations ON locations.location_id = events.location_id INNER JOIN companies ON companies.company_id = events.company_id;";
+            System.out.println(sql);
             rs = database.RunSQLQuery(sql);
             
             while(rs.next()){
                 
-                String company = rs.getString("company_name");
-                String location = rs.getString("location_name");
+                String company = rs.getString(1);
+                String location = rs.getString(2);
                 System.out.println(company);
                 System.out.println(location);
                 //String array to store the data in the jtable
