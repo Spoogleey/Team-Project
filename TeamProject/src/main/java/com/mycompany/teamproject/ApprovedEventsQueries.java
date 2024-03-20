@@ -20,9 +20,9 @@ public class ApprovedEventsQueries {
     }
     
     // Add a new event into the events table
-    public void addEvent(String name, String desc, String venue, int location, int music, String date, double price, int company) {
+    public void addEvent(String name, String desc, String venue, int location, int music, String date, double price, int min, int max, int company) {
         database.Connect("events.db");
-        String sql = "INSERT INTO events (event_name, event_desc, event_venue, location_id, music_id, event_date, event_price, company_id, approved) VALUES ('"+name+"', '"+desc+"', '"+venue+"', "+location+", "+music+", '"+date+"', "+price+", "+company+", 0);";
+        String sql = "INSERT INTO events (event_name, event_desc, event_venue, location_id, music_id, event_date, event_price, min_age, max_age, company_id, approved) VALUES ('"+name+"', '"+desc+"', '"+venue+"', "+location+", "+music+", '"+date+"', "+price+", "+min+", "+max+", "+company+", 0);";
         boolean pass = database.RunSQL(sql);
         if(!pass) {
             System.out.println("Failed to add an event to the table.");
@@ -32,7 +32,7 @@ public class ApprovedEventsQueries {
     // View all of the approved events
     public ArrayList<ApprovedEvents> getApprovedEvents() {
         database.Connect("events.db");
-        String sql = "SELECT event_name, event_desc, event_venue, location_name, music_name, event_date, event_price, company_id FROM events INNER JOIN locations ON locations.location_id = events.location_id INNER JOIN music ON music.music_id = events.music_id INNER JOIN companies ON companies.company_id = events.company_id WHERE approved = 1;";
+        String sql = "SELECT event_name, event_desc, event_venue, location_name, music_name, event_date, event_price, min_age, max_age, company_id FROM events INNER JOIN locations ON locations.location_id = events.location_id INNER JOIN music ON music.music_id = events.music_id INNER JOIN companies ON companies.company_id = events.company_id WHERE approved = 1;";
         ResultSet rs = database.RunSQLQuery(sql);
         ArrayList<ApprovedEvents> results = new ArrayList<>();
         try {
@@ -46,6 +46,8 @@ public class ApprovedEventsQueries {
                 approved.setDate(rs.getString(6));
                 approved.setPrice(rs.getDouble(7));
                 approved.setCompany(rs.getString(8));
+                approved.setMin(rs.getInt(9));
+                approved.setMax(rs.getInt(10));
                 results.add(approved);
             }
         } catch(SQLException e) {
