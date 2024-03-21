@@ -72,10 +72,7 @@ public class ApprovedPage extends javax.swing.JFrame {
 
         PendingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Event ID", "Approved Event"
