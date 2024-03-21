@@ -30,9 +30,9 @@ public class AddEventPage extends javax.swing.JFrame {
     
     public void AddingEvent(){
         
-        //String ID = musicText.SelectedValue.ToString();
-        InsertEvent.addEvent(nameText.getText(), descText.getText(), venueText.getText(), SOMEBITS, WIDTH, dateText.getText(), ERROR, NORMAL);
-    
+        
+        InsertEvent.addEvent(nameText.getText(), descText.getText(), venueText.getText(), LocationCombo.getSelectedIndex(), musicText.getSelectedIndex(), dateText.getText(),  Double.parseDouble(priceText.getText()), NORMAL);
+        
 }
     //update combo box for database details
     private void updateGenreCombo(){
@@ -61,14 +61,9 @@ public class AddEventPage extends javax.swing.JFrame {
         
     }
     
-    //Get index of the genre
     
-    public void getGenreindex(){
-        
-        int genre = musicText.getSelectedIndex();
-        
-        
-    }
+ 
+    
    
     
 
@@ -303,7 +298,7 @@ public class AddEventPage extends javax.swing.JFrame {
 
     private void addEventButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addEventButtonMouseClicked
         // TODO add your handling code here:
-        //ApprovedEventsQueries.addEvent();
+        AddingEvent();
     }//GEN-LAST:event_addEventButtonMouseClicked
 
     private void clearButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearButtonMouseClicked
