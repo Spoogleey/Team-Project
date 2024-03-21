@@ -41,6 +41,10 @@ public class AnalyticsScreen extends javax.swing.JFrame {
             Integer tickets = analytics.getTickets();
             String hi = tickets.toString();
             TotalTicketsSold.setText(hi);
+            Double profit = analytics.getProfit();
+            String prof = profit.toString();
+            TotalProfit.setText(prof);
+            jLabel5.setText(analytics.getName());
             rowData[0] = analytics.getName();
             model.addRow(rowData);
             rowData[0] = "Tickets Sold: " + hi;

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class TeamProject {
 
     public static void main(String[] args) {
-        userHome a = new userHome();
+        AnalyticsScreen a = new AnalyticsScreen();
         a.setVisible(true);
         
     }
