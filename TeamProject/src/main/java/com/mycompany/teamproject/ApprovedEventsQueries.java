@@ -24,10 +24,7 @@ public class ApprovedEventsQueries {
         database.Connect("events.db");
         String sql = "INSERT INTO events (event_name, event_desc, event_venue, location_id, music_id, event_date, event_price, min_age, max_age, company_id, approved) VALUES ('"+name+"', '"+desc+"', '"+venue+"', "+location+", "+music+", '"+date+"', "+price+", "+min+", "+max+", "+company+", 0);";
         boolean pass = database.RunSQL(sql);
-        if (pass){
-            System.out.println("Connected and sent to the Database.");
-        }
-        else if(!pass) {
+        if(!pass) {
             System.out.println("Failed to add an event to the table.");
         }
     }
@@ -35,7 +32,7 @@ public class ApprovedEventsQueries {
     // View all of the approved events
     public ArrayList<ApprovedEvents> getApprovedEvents() {
         database.Connect("events.db");
-        String sql = "SELECT event_name, event_desc, event_venue, location_name, music_name, event_date, event_price, company_id FROM events INNER JOIN locations ON locations.location_id = events.location_id INNER JOIN music ON music.music_id = events.music_id INNER JOIN companies ON companies.company_id = events.company_id WHERE approved = 1;";
+        String sql = "SELECT event_name, event_desc, event_venue, location_name, music_name, event_date, event_price, min_age, max_age, company_id FROM events INNER JOIN locations ON locations.location_id = events.location_id INNER JOIN music ON music.music_id = events.music_id INNER JOIN companies ON companies.company_id = events.company_id WHERE approved = 1;";
         ResultSet rs = database.RunSQLQuery(sql);
         ArrayList<ApprovedEvents> results = new ArrayList<>();
         try {
