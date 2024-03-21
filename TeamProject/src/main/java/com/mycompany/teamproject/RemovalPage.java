@@ -4,6 +4,11 @@
  */
 package com.mycompany.teamproject;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.UnsupportedLookAndFeelException;
+
 /**
  *
  * @author User
@@ -28,9 +33,9 @@ public class RemovalPage extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        RemoveButton = new javax.swing.JButton();
+        CancelButton = new javax.swing.JButton();
+        GoBack4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,14 +49,29 @@ public class RemovalPage extends javax.swing.JFrame {
             new String [] {
                 "Event", "Date", "Organiser", "Taken Place"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                true, false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("jButton1");
+        RemoveButton.setText("Remove");
 
-        jButton2.setText("jButton2");
+        CancelButton.setText("Cancel");
 
-        jButton3.setText("jButton3");
+        GoBack4.setText("Go Back");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -63,11 +83,11 @@ public class RemovalPage extends javax.swing.JFrame {
                 .addContainerGap(44, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(RemoveButton)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(CancelButton)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(GoBack4)
                 .addGap(54, 54, 54))
         );
         layout.setVerticalGroup(
@@ -77,9 +97,9 @@ public class RemovalPage extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(RemoveButton)
+                    .addComponent(CancelButton)
+                    .addComponent(GoBack4))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
@@ -108,8 +128,9 @@ public class RemovalPage extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(RemovalPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(RemovalPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(RemovalPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(RemovalPage.class.getName()).log(Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -122,9 +143,9 @@ public class RemovalPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton CancelButton;
+    private javax.swing.JButton GoBack4;
+    private javax.swing.JButton RemoveButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
