@@ -14,7 +14,10 @@ import java.util.logging.Logger;
  */
 public class userHome extends javax.swing.JFrame {
     
-    userHomeQueries query = new userHomeQueries();
+    private final userHomeQueries query = new userHomeQueries();
+    private final DatabaseConnection database;
+    private final String filename = "events.db";
+    
     
 
     /**
@@ -23,15 +26,12 @@ public class userHome extends javax.swing.JFrame {
     public userHome() {
         initComponents();
         locationComboBox();
-        genreComboBox();
-    
-        
+        genreComboBox(); 
+        database = new DatabaseConnection();
+        database.Connect(filename);
     }
     
-    private void test(){
-       String test = query.fetchEvents();
-        System.out.println(test);
-    }
+
     
     
     //Setting the text of the location combobox
@@ -62,14 +62,14 @@ public class userHome extends javax.swing.JFrame {
     
     
     //Getting the users filters from the comboboxes
-    public ArrayList<String> getFilters(){
-        
+    public String getFilters(){
+
         String locationPref;
         Integer minAgePref;
         Integer maxAgePref;
         String genrePref;
         Integer pricePref = null;
-                
+
         
         //Location
        locationPref = (locationCombo.getSelectedItem()).toString();
@@ -97,16 +97,49 @@ public class userHome extends javax.swing.JFrame {
             default -> {
             }
         }
+        
+        
+        //Join 
+        //location, music and event table
+        //on location_id, music_id
+        
+        //Get 
+        //event_name
+        //event_desc
+        //event_venue
+        //event_date
+        //event_price
+        
+        //Filters
+        //location_name
+        //music_name
+        //event_price
+        //min_age
+        //max_age
+        
+       String filterSql = "SELECT event_name, event_desc, event_venue, event_data, event_price "
+                + "FROM events "
+                + "INNER JOIN locations "
+                + "ON events.location_id = locations.loaction_id "
+                + "INNER JOIN music "
+                + "ON events.music_id = music.music_id "
+                + "WHERE location_name = '"+locationPref +"' "
+                + "AND music_name = '"+genrePref +"' "
+                + "AND event_price <= "+pricePref
+                + " AND min_age >= "+minAgePref
+                + " AND max_age <= "+maxAgePref+ " ;"
+                ;
        
-       ArrayList<String> filters = new ArrayList();
-       filters.add(locationPref);
-       filters.add(minAgePref.toString());
-       filters.add(maxAgePref.toString());
-       filters.add(genrePref);
-       filters.add(pricePref.toString());
+        System.out.println(filterSql);
+       return filterSql;
        
-       return filters;
     }
+    
+    private void populateTable() throws SQLException{       
+            
+        }
+        
+        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -117,6 +150,7 @@ public class userHome extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         eventTable = new javax.swing.JScrollPane();
         mainTable = new javax.swing.JTable();
         genreCombo = new javax.swing.JComboBox<>();
@@ -169,52 +203,74 @@ public class userHome extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGap(15, 15, 15)
+                            .addComponent(confirmFilterButton)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(locationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(locationCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(ageRangeLabel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(ageRangeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(priceRangeLabel)
+                            .addGap(5, 5, 5)
+                            .addComponent(priceRangeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(genreLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(genreCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(13, 13, 13))
+                        .addComponent(eventTable, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addContainerGap()))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 606, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(69, 69, 69)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(genreCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(genreLabel)
+                        .addComponent(priceRangeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(priceRangeLabel)
+                        .addComponent(ageRangeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ageRangeLabel)
+                        .addComponent(locationCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(locationLabel)
+                        .addComponent(confirmFilterButton))
+                    .addGap(18, 18, 18)
+                    .addComponent(eventTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(70, Short.MAX_VALUE)))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(confirmFilterButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
-                .addComponent(locationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(locationCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(ageRangeLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ageRangeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(priceRangeLabel)
-                .addGap(5, 5, 5)
-                .addComponent(priceRangeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(genreLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(genreCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(eventTable)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(105, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(genreCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(genreLabel)
-                    .addComponent(priceRangeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(priceRangeLabel)
-                    .addComponent(ageRangeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ageRangeLabel)
-                    .addComponent(locationCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(locationLabel)
-                    .addComponent(confirmFilterButton))
-                .addGap(18, 18, 18)
-                .addComponent(eventTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(516, Short.MAX_VALUE))
         );
 
         pack();
@@ -226,7 +282,8 @@ public class userHome extends javax.swing.JFrame {
 
     private void confirmFilterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmFilterButtonActionPerformed
         // TODO add your handling code here:
-        test();
+        getFilters();
+        
     }//GEN-LAST:event_confirmFilterButtonActionPerformed
 
     /**
@@ -271,6 +328,7 @@ public class userHome extends javax.swing.JFrame {
     private javax.swing.JScrollPane eventTable;
     private javax.swing.JComboBox<String> genreCombo;
     private javax.swing.JLabel genreLabel;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox<String> locationCombo;
     private javax.swing.JLabel locationLabel;
     private javax.swing.JTable mainTable;
