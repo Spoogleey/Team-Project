@@ -20,9 +20,9 @@ public class ApprovedEventsQueries {
     }
     
     // Add a new event into the events table
-    public void addEvent(String name, String desc, String venue, int location, int music, String date, double price, int min, in max, int company) {
+    public void addEvent(String name, String desc, String venue, int location, int music, String date, double price, int min, int max, int company) {
         database.Connect("events.db");
-        String sql = "INSERT INTO events (event_name, event_desc, event_venue, location_id, music_id, event_date, event_price, company_id, approved) VALUES ('"+name+"', '"+desc+"', '"+venue+"', "+location+", "+music+", '"+date+"', "+price+", "+min+", "+max+", "+company+", 0);";
+        String sql = "INSERT INTO events (event_name, event_desc, event_venue, location_id, music_id, event_date, event_price, min_age, max_age, company_id, approved) VALUES ('"+name+"', '"+desc+"', '"+venue+"', "+location+", "+music+", '"+date+"', "+price+", "+min+", "+max+", "+company+", 0);";
         boolean pass = database.RunSQL(sql);
         if(!pass) {
             System.out.println("Failed to add an event to the table.");

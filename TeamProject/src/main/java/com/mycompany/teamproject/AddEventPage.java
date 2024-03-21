@@ -31,8 +31,9 @@ public class AddEventPage extends javax.swing.JFrame {
     public void AddingEvent(){
         
         
-        InsertEvent.addEvent(nameText.getText(), descText.getText(), venueText.getText(), LocationCombo.getSelectedIndex(), musicText.getSelectedIndex(), dateText.getText(),  Double.parseDouble(priceText.getText()), NORMAL);
-        
+        InsertEvent.addEvent(nameText.getText(), descText.getText(), venueText.getText(), LocationCombo.getSelectedIndex(), 
+                musicText.getSelectedIndex(), dateText.getText(), Double.parseDouble(priceText.getText()),
+                Integer.parseInt(minAge.getText()), Integer.parseInt(maxAge.getText()), 0);
 }
     //update combo box for database details
     private void updateGenreCombo(){
