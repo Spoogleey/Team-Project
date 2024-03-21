@@ -50,16 +50,27 @@ public class AddEventPage extends javax.swing.JFrame {
 
     private void updatelocationCombo(){
         database.Connect("events.db");
-        String sql = "SELECT * FROM location";
+        String sql = "SELECT * FROM locations";
         try{
             rs = database.RunSQLQuery(sql);
             while(rs.next()){
-                musicText.addItem(rs.getString("location_name"));
+                LocationCombo.addItem(rs.getString("location_name"));
             }
         } catch (Exception e){  
         }
         
     }
+    
+    //Get index of the genre
+    
+    public void getGenreindex(){
+        
+        int genre = musicText.getSelectedIndex();
+        
+        
+    }
+   
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,14 +84,13 @@ public class AddEventPage extends javax.swing.JFrame {
         nameText = new javax.swing.JTextField();
         descText = new javax.swing.JTextField();
         venueText = new javax.swing.JTextField();
-        locationText = new javax.swing.JTextField();
         priceText = new javax.swing.JTextField();
         musicText = new javax.swing.JComboBox<>();
         dateText = new javax.swing.JTextField();
         addEventButton = new javax.swing.JButton();
         clearButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
-        ageText = new javax.swing.JTextField();
+        minAge = new javax.swing.JTextField();
         EventLabel = new javax.swing.JLabel();
         DescLabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -90,6 +100,8 @@ public class AddEventPage extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         LocationCombo = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        maxAge = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,9 +118,6 @@ public class AddEventPage extends javax.swing.JFrame {
         venueText.setMaximumSize(new java.awt.Dimension(160, 22));
         venueText.setMinimumSize(new java.awt.Dimension(160, 22));
         venueText.setPreferredSize(new java.awt.Dimension(160, 22));
-
-        locationText.setMinimumSize(new java.awt.Dimension(160, 22));
-        locationText.setPreferredSize(new java.awt.Dimension(160, 22));
 
         priceText.setMinimumSize(new java.awt.Dimension(160, 22));
         priceText.setPreferredSize(new java.awt.Dimension(160, 22));
@@ -155,11 +164,11 @@ public class AddEventPage extends javax.swing.JFrame {
             }
         });
 
-        ageText.setMinimumSize(new java.awt.Dimension(160, 22));
-        ageText.setPreferredSize(new java.awt.Dimension(160, 22));
-        ageText.addActionListener(new java.awt.event.ActionListener() {
+        minAge.setMinimumSize(new java.awt.Dimension(160, 22));
+        minAge.setPreferredSize(new java.awt.Dimension(160, 22));
+        minAge.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ageTextActionPerformed(evt);
+                minAgeActionPerformed(evt);
             }
         });
 
@@ -177,52 +186,66 @@ public class AddEventPage extends javax.swing.JFrame {
 
         jLabel7.setText("Price:");
 
-        jLabel8.setText("Age Range:");
+        jLabel8.setText("Minimum Age:");
 
         LocationCombo.setPreferredSize(new java.awt.Dimension(160, 22));
+
+        jLabel9.setText("Maximum Age:");
+
+        maxAge.setMinimumSize(new java.awt.Dimension(160, 22));
+        maxAge.setPreferredSize(new java.awt.Dimension(160, 22));
+        maxAge.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                maxAgeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(192, 192, 192)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(addEventButton)
-                    .addComponent(EventLabel)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(DescLabel))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(388, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(clearButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(cancelButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(musicText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(priceText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(DescLabel)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel9)
+                                .addComponent(jLabel8))
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(EventLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(addEventButton, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(locationText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(LocationCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(venueText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(descText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ageText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(176, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(clearButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(cancelButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(musicText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(priceText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(venueText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(descText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(minAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(LocationCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(maxAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
+                .addGap(134, 134, 134))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(76, 76, 76)
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(EventLabel))
@@ -236,7 +259,6 @@ public class AddEventPage extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(locationText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(LocationCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -253,14 +275,18 @@ public class AddEventPage extends javax.swing.JFrame {
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ageText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(minAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(maxAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addEventButton)
                     .addComponent(clearButton)
                     .addComponent(cancelButton))
-                .addGap(76, 76, 76))
+                .addGap(56, 56, 56))
         );
 
         pack();
@@ -282,13 +308,16 @@ public class AddEventPage extends javax.swing.JFrame {
 
     private void clearButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearButtonMouseClicked
         // TODO add your handling code here:
+        //Sets values to null in the text boxes
         nameText.setText("");
         descText.setText("");
         dateText.setText("");
-        locationText.setText("");
+        LocationCombo.setSelectedItem(null);
         musicText.setSelectedItem(null);
         priceText.setText("");
         venueText.setText("");
+        minAge.setText("");
+        minAge.setText("");
     }//GEN-LAST:event_clearButtonMouseClicked
 
     private void addEventButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEventButtonActionPerformed
@@ -307,6 +336,9 @@ public class AddEventPage extends javax.swing.JFrame {
         if(cancel == JOptionPane.YES_OPTION){
             new AddEventPage().setVisible(false);
         }
+        else if (cancel == JOptionPane.NO_OPTION){
+            
+        }
         //////////////////////YES NO CONFIRM NEEDS COMPLETE
         
         
@@ -323,9 +355,13 @@ public class AddEventPage extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cancelButtonMouseClicked
 
-    private void ageTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ageTextActionPerformed
+    private void minAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minAgeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ageTextActionPerformed
+    }//GEN-LAST:event_minAgeActionPerformed
+
+    private void maxAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maxAgeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_maxAgeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -367,7 +403,6 @@ public class AddEventPage extends javax.swing.JFrame {
     private javax.swing.JLabel EventLabel;
     private javax.swing.JComboBox<String> LocationCombo;
     private javax.swing.JButton addEventButton;
-    private javax.swing.JTextField ageText;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton clearButton;
     private javax.swing.JTextField dateText;
@@ -378,7 +413,9 @@ public class AddEventPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JTextField locationText;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField maxAge;
+    private javax.swing.JTextField minAge;
     private javax.swing.JComboBox<String> musicText;
     private javax.swing.JTextField nameText;
     private javax.swing.JTextField priceText;

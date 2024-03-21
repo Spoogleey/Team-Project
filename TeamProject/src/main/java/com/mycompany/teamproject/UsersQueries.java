@@ -16,9 +16,9 @@ public class UsersQueries {
     }
     
     // Code to add new user
-    public void addUser(String first, String second, String username, String password, String dob, String email) {
+    public void addUser(String first, String second, String username, String password, String dob, String email, String preference) {
         database.Connect("events.db");
-        String sql = "INSERT INTO users (firstname, surname, username, password, dateofbirth, email) VALUES ('"+first+"', '"+second+"', '"+username+"', '"+password+"', '"+dob+"', '"+email+"');";
+        String sql = "INSERT INTO users (firstname, surname, username, password, dateofbirth, email, preference1) VALUES ('"+first+"', '"+second+"', '"+username+"', '"+password+"', '"+dob+"', '"+email+"', '"+preference+"');";
         boolean pass = database.RunSQL(sql);
         if(!pass) {
             System.out.println("Failed to add a new user.");
@@ -32,6 +32,26 @@ public class UsersQueries {
         boolean pass = database.RunSQL(sql);
         if(!pass) {
             System.out.println("Failed to asign company to the user.");
+        }
+    }
+    
+    // Add a preference second preference to the user
+    public void addPreference2(String preference, int user) {
+        database.Connect("events.db");
+        String sql = "UPDATE users SET preference2 = '"+preference+"' WHERE user_id = "+user+";";
+        boolean pass = database.RunSQL(sql);
+        if(!pass) {
+            System.out.println("Failed to add a second preference to the user.");
+        }
+    }
+    
+    // Add a third preference to the user
+    public void addPreference3(String preference, int user) {
+        database.Connect("events.db");
+        String sql = "UPDATE users SET preference3 = '"+preference+"' WHERE user_id = "+user+";";
+        boolean pass = database.RunSQL(sql);
+        if(!pass) {
+            System.out.println("Failed to add a second preference to the user.");
         }
     }
 }
