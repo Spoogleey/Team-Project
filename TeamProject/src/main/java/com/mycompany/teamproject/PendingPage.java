@@ -20,6 +20,7 @@ public class PendingPage extends javax.swing.JFrame {
      */
     public PendingPage() {
         initComponents();
+        database = new DatabaseConnection();
         UpdatePendingTable();
     }
     
@@ -61,10 +62,10 @@ public class PendingPage extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         PendingTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        ViewButton1 = new javax.swing.JButton();
+        GoBack1 = new javax.swing.JButton();
+        DenyButton1 = new javax.swing.JButton();
+        ApproveButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,16 +90,16 @@ public class PendingPage extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(PendingTable);
 
-        jButton1.setText("View");
+        ViewButton1.setText("View");
 
-        jButton2.setText("Go Back");
+        GoBack1.setText("Go Back");
 
-        jButton3.setText("Denied");
+        DenyButton1.setText("Denied");
 
-        jButton4.setText("Approved");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        ApproveButton1.setText("Approved");
+        ApproveButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                ApproveButton1ActionPerformed(evt);
             }
         });
 
@@ -110,13 +111,13 @@ public class PendingPage extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton4)
+                        .addComponent(ApproveButton1)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3)
+                        .addComponent(DenyButton1)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(ViewButton1)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2))
+                        .addComponent(GoBack1))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 725, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
@@ -127,19 +128,19 @@ public class PendingPage extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(ViewButton1)
+                    .addComponent(GoBack1)
+                    .addComponent(DenyButton1)
+                    .addComponent(ApproveButton1))
                 .addGap(12, 12, 12))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void ApproveButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApproveButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_ApproveButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,11 +178,11 @@ public class PendingPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ApproveButton1;
+    private javax.swing.JButton DenyButton1;
+    private javax.swing.JButton GoBack1;
     private javax.swing.JTable PendingTable;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton ViewButton1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

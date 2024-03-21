@@ -125,7 +125,9 @@ public class AnalyticsScreen extends javax.swing.JFrame {
                 int percentage = (int) percent;
                 percent4.setText(percentage + "%");
                 jProgressBar4.setValue(percentage);
+                
             }
+            i+=1;
         }
         i = 0;
         TotalTicketsSold.setText(String.valueOf(totalTicketsSold));
@@ -510,6 +512,7 @@ public class AnalyticsScreen extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel6.setText("Event 1");
 
+        allTable2.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
         allTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -556,6 +559,7 @@ public class AnalyticsScreen extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel7.setText("Event 1");
 
+        allTable3.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
         allTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -602,6 +606,7 @@ public class AnalyticsScreen extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel8.setText("Event 1");
 
+        allTable4.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
         allTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
