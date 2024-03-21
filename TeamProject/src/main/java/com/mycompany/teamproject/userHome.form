@@ -24,7 +24,9 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="175" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              <Component id="confirmFilterButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="82" max="32767" attributes="0"/>
               <Component id="locationLabel" min="-2" pref="51" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="locationCombo" min="-2" max="-2" attributes="0"/>
@@ -62,6 +64,7 @@
                   <Component id="ageRangeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="locationCombo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="locationLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="confirmFilterButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="eventTable" min="-2" max="-2" attributes="0"/>
@@ -78,15 +81,36 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
+        <Component class="javax.swing.JTable" name="mainTable">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="4">
+              <Table columnCount="3" rowCount="4">
                 <Column editable="true" title="Title 1" type="java.lang.Object"/>
                 <Column editable="true" title="Title 2" type="java.lang.Object"/>
                 <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                <Column editable="true" title="Title 4" type="java.lang.Object"/>
               </Table>
+            </Property>
+            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+              <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+              </TableColumnModel>
+            </Property>
+            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
         </Component>
@@ -113,7 +137,13 @@
     <Component class="javax.swing.JComboBox" name="priceRangeCombo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="0"/>
+          <StringArray count="5">
+            <StringItem index="0" value="&#xa3;"/>
+            <StringItem index="1" value="&#xa3;&#xa3;"/>
+            <StringItem index="2" value="&#xa3;&#xa3;&#xa3;"/>
+            <StringItem index="3" value="Any"/>
+            <StringItem index="4" value=" "/>
+          </StringArray>
         </Property>
       </Properties>
       <AuxValues>
@@ -128,7 +158,12 @@
     <Component class="javax.swing.JComboBox" name="ageRangeCombo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="0"/>
+          <StringArray count="4">
+            <StringItem index="0" value="Any"/>
+            <StringItem index="1" value="18-30"/>
+            <StringItem index="2" value="25-40"/>
+            <StringItem index="3" value="30-50"/>
+          </StringArray>
         </Property>
       </Properties>
       <AuxValues>
@@ -154,6 +189,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Location:"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="confirmFilterButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Filter"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmFilterButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

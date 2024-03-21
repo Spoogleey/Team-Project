@@ -4,6 +4,7 @@
  */
 package com.mycompany.teamproject;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
         
@@ -27,7 +28,13 @@ public class userHome extends javax.swing.JFrame {
         
     }
     
+    private void test(){
+       String test = query.fetchEvents();
+        System.out.println(test);
+    }
     
+    
+    //Setting the text of the location combobox
     private void locationComboBox(){
         ResultSet locations = query.getLocations();
         try {
@@ -40,6 +47,7 @@ public class userHome extends javax.swing.JFrame {
         }
     }
     
+    //Setting the text of the genre combobox
     private void genreComboBox(){
         ResultSet genres = query.getMusicGenres();
         try{
@@ -50,6 +58,54 @@ public class userHome extends javax.swing.JFrame {
         }catch (SQLException ex){
             Logger.getLogger(userHome.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    
+    //Getting the users filters from the comboboxes
+    public ArrayList<String> getFilters(){
+        
+        String locationPref;
+        Integer minAgePref;
+        Integer maxAgePref;
+        String genrePref;
+        Integer pricePref = null;
+                
+        
+        //Location
+       locationPref = (locationCombo.getSelectedItem()).toString();
+       
+       //Age-Range
+       String ageRangePref = (ageRangeCombo.getSelectedItem()).toString();
+       if (ageRangePref.equals("Any") ){
+           minAgePref = 0;
+           maxAgePref = 99;
+       }else{
+           minAgePref = Integer.parseInt(ageRangePref.substring(0,ageRangePref.indexOf("-")));
+           maxAgePref = Integer.parseInt(ageRangePref.substring(ageRangePref.indexOf("-")+1));
+       }
+       
+       //Genre
+       genrePref = (genreCombo.getSelectedItem()).toString();
+       
+       //Price
+       String pricePrefStr = (priceRangeCombo.getSelectedItem()).toString();
+        switch (pricePrefStr) {
+            case "£" -> pricePref = 5;
+            case "££" -> pricePref = 10;
+            case "£££" -> pricePref = 20;
+            case "Any" -> pricePref = 100;
+            default -> {
+            }
+        }
+       
+       ArrayList<String> filters = new ArrayList();
+       filters.add(locationPref);
+       filters.add(minAgePref.toString());
+       filters.add(maxAgePref.toString());
+       filters.add(genrePref);
+       filters.add(pricePref.toString());
+       
+       return filters;
     }
 
     /**
@@ -62,7 +118,7 @@ public class userHome extends javax.swing.JFrame {
     private void initComponents() {
 
         eventTable = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        mainTable = new javax.swing.JTable();
         genreCombo = new javax.swing.JComboBox<>();
         genreLabel = new javax.swing.JLabel();
         priceRangeCombo = new javax.swing.JComboBox<>();
@@ -71,21 +127,22 @@ public class userHome extends javax.swing.JFrame {
         ageRangeLabel = new javax.swing.JLabel();
         locationCombo = new javax.swing.JComboBox<>();
         locationLabel = new javax.swing.JLabel();
+        confirmFilterButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        mainTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3"
             }
         ));
-        eventTable.setViewportView(jTable1);
+        eventTable.setViewportView(mainTable);
 
         genreCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,18 +152,31 @@ public class userHome extends javax.swing.JFrame {
 
         genreLabel.setText("Genre:");
 
+        priceRangeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "£", "££", "£££", "Any", " " }));
+
         priceRangeLabel.setText("Price Range:");
+
+        ageRangeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "18-30", "25-40", "30-50" }));
 
         ageRangeLabel.setText("Age Range:");
 
         locationLabel.setText("Location:");
+
+        confirmFilterButton.setText("Filter");
+        confirmFilterButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmFilterButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(175, Short.MAX_VALUE)
+                .addGap(21, 21, 21)
+                .addComponent(confirmFilterButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addComponent(locationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(locationCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -140,7 +210,8 @@ public class userHome extends javax.swing.JFrame {
                     .addComponent(ageRangeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ageRangeLabel)
                     .addComponent(locationCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(locationLabel))
+                    .addComponent(locationLabel)
+                    .addComponent(confirmFilterButton))
                 .addGap(18, 18, 18)
                 .addComponent(eventTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43))
@@ -152,6 +223,11 @@ public class userHome extends javax.swing.JFrame {
     private void genreComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genreComboActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_genreComboActionPerformed
+
+    private void confirmFilterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmFilterButtonActionPerformed
+        // TODO add your handling code here:
+        test();
+    }//GEN-LAST:event_confirmFilterButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -191,12 +267,13 @@ public class userHome extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ageRangeCombo;
     private javax.swing.JLabel ageRangeLabel;
+    private javax.swing.JButton confirmFilterButton;
     private javax.swing.JScrollPane eventTable;
     private javax.swing.JComboBox<String> genreCombo;
     private javax.swing.JLabel genreLabel;
-    private javax.swing.JTable jTable1;
     private javax.swing.JComboBox<String> locationCombo;
     private javax.swing.JLabel locationLabel;
+    private javax.swing.JTable mainTable;
     private javax.swing.JComboBox<String> priceRangeCombo;
     private javax.swing.JLabel priceRangeLabel;
     // End of variables declaration//GEN-END:variables
