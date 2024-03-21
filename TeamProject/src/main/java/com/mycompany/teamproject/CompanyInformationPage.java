@@ -79,9 +79,7 @@ public class CompanyInformationPage extends javax.swing.JFrame {
 
         CompanyTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Company Name", "Company Address"
