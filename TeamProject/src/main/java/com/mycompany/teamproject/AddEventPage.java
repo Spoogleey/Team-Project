@@ -26,14 +26,14 @@ public class AddEventPage extends javax.swing.JFrame {
     
     //Add Events into the SQLite Table
     
-    private ApprovedEventsQueries InsertEvent = new ApprovedEventsQueries();
+    private final ApprovedEventsQueries InsertEvent = new ApprovedEventsQueries();
     
     public void AddingEvent(){
         
         
         InsertEvent.addEvent(nameText.getText(), descText.getText(), venueText.getText(), LocationCombo.getSelectedIndex(), 
                 musicText.getSelectedIndex(), dateText.getText(), Double.parseDouble(priceText.getText()),
-                Integer.parseInt(minAge.getText()), Integer.parseInt(maxAge.getText()), 0);
+                Integer.parseInt(minAge.getText()), Integer.parseInt(maxAge.getText()), NORMAL);
 }
     //update combo box for database details
     private void updateGenreCombo(){
