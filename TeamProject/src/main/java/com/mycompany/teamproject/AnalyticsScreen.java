@@ -27,6 +27,9 @@ public class AnalyticsScreen extends javax.swing.JFrame {
     
     public void addRowToTable() {
         DefaultTableModel model = (DefaultTableModel) allTable1.getModel();
+        DefaultTableModel model2 = (DefaultTableModel) allTable2.getModel();
+        DefaultTableModel model3 = (DefaultTableModel) allTable3.getModel();
+        DefaultTableModel model4 = (DefaultTableModel) allTable4.getModel();
         AnalyticsQueries manager = new AnalyticsQueries(); 
         String companyName = "Melody Mingle"; //this is the company name which is needed for the analytics
         ArrayList<Analytics> analyticsData = manager.getAnalytics(companyName); //This calls the method
@@ -36,36 +39,95 @@ public class AnalyticsScreen extends javax.swing.JFrame {
         int totalTicketsLeft = 0;
         double totalProfit = 0;
         double totalSales = 0;
-        
+        int i = 0;
         for (Analytics analytics : analyticsData) {
-            //this is keeping a tally of the total ticket cost
             totalTicketsSold += analytics.getTickets();
             totalTicketsLeft += analytics.getLeft();
             totalProfit += analytics.getProfit();
-            totalSales += analytics.getSales();
-            
-            //this is setting the event name in 2 of the labels
+            totalSales += analytics.getSales();         
             System.out.println("Event Name: " + analytics.getName() + ", Tickets Sold: " + analytics.getTickets());
-            jLabel5.setText(analytics.getName());
-            ProgressEvent1.setText(analytics.getName());
-            
-            //this is adding them all to the table
-            rowData[0] = "Tickets Sold: " + analytics.getTickets();
-            model.addRow(rowData);
-            rowData[0] = "Tickets Left: " + analytics.getLeft();
-            model.addRow(rowData);
-            rowData[0] = "Revenue: £" + analytics.getSales();
-            model.addRow(rowData);
-            rowData[0] = "Profit: £" + analytics.getProfit();
-            model.addRow(rowData);
-            Integer tickets = analytics.getTickets();
-            Integer left = analytics.getLeft();
-            Integer totaltickets = tickets+left;
-            float percent = (float) (tickets*100/totaltickets);
-            int percentage = (int) percent;
-            percent1.setText(percentage + "%");
-            jProgressBar1.setValue(percentage);
+            if (i==0) {
+                jLabel5.setText(analytics.getName());
+                ProgressEvent1.setText(analytics.getName());
+                //this is adding them all to the table
+                rowData[0] = "Tickets Sold: " + analytics.getTickets();
+                model.addRow(rowData);
+                rowData[0] = "Tickets Left: " + analytics.getLeft();
+                model.addRow(rowData);
+                rowData[0] = "Revenue: £" + analytics.getSales();
+                model.addRow(rowData);
+                rowData[0] = "Profit: £" + analytics.getProfit();
+                model.addRow(rowData);
+                Integer tickets = analytics.getTickets();
+                Integer left = analytics.getLeft();
+                Integer totaltickets = tickets+left;
+                float percent = (float) (tickets*100/totaltickets);
+                int percentage = (int) percent;
+                percent1.setText(percentage + "%");
+                jProgressBar1.setValue(percentage);
+            }
+            else if (i==1) {
+                jLabel6.setText(analytics.getName());
+                ProgressEvent2.setText(analytics.getName());
+                //this is adding them all to the table
+                rowData[0] = "Tickets Sold: " + analytics.getTickets();
+                model2.addRow(rowData);
+                rowData[0] = "Tickets Left: " + analytics.getLeft();
+                model2.addRow(rowData);
+                rowData[0] = "Revenue: £" + analytics.getSales();
+                model2.addRow(rowData);
+                rowData[0] = "Profit: £" + analytics.getProfit();
+                model2.addRow(rowData);
+                Integer tickets = analytics.getTickets();
+                Integer left = analytics.getLeft();
+                Integer totaltickets = tickets+left;
+                float percent = (float) (tickets*100/totaltickets);
+                int percentage = (int) percent;
+                percent2.setText(percentage + "%");
+                jProgressBar2.setValue(percentage);
+            }
+            else if (i==2) {
+                jLabel7.setText(analytics.getName());
+                ProgressEvent3.setText(analytics.getName());
+                //this is adding them all to the table
+                rowData[0] = "Tickets Sold: " + analytics.getTickets();
+                model3.addRow(rowData);
+                rowData[0] = "Tickets Left: " + analytics.getLeft();
+                model3.addRow(rowData);
+                rowData[0] = "Revenue: £" + analytics.getSales();
+                model3.addRow(rowData);
+                rowData[0] = "Profit: £" + analytics.getProfit();
+                model3.addRow(rowData);
+                Integer tickets = analytics.getTickets();
+                Integer left = analytics.getLeft();
+                Integer totaltickets = tickets+left;
+                float percent = (float) (tickets*100/totaltickets);
+                int percentage = (int) percent;
+                percent3.setText(percentage + "%");
+                jProgressBar3.setValue(percentage);
+            }
+            else if (i==3) {
+                jLabel8.setText(analytics.getName());
+                ProgressEvent4.setText(analytics.getName());
+                //this is adding them all to the table
+                rowData[0] = "Tickets Sold: " + analytics.getTickets();
+                model4.addRow(rowData);
+                rowData[0] = "Tickets Left: " + analytics.getLeft();
+                model4.addRow(rowData);
+                rowData[0] = "Revenue: £" + analytics.getSales();
+                model4.addRow(rowData);
+                rowData[0] = "Profit: £" + analytics.getProfit();
+                model4.addRow(rowData);
+                Integer tickets = analytics.getTickets();
+                Integer left = analytics.getLeft();
+                Integer totaltickets = tickets+left;
+                float percent = (float) (tickets*100/totaltickets);
+                int percentage = (int) percent;
+                percent4.setText(percentage + "%");
+                jProgressBar4.setValue(percentage);
+            }
         }
+        i = 0;
         TotalTicketsSold.setText(String.valueOf(totalTicketsSold));
         TotalLeft.setText(String.valueOf(totalTicketsLeft));
         TotalProfit.setText("£" + totalProfit);
