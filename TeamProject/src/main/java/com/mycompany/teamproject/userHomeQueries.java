@@ -4,9 +4,11 @@
  */
 package com.mycompany.teamproject;
 
+
+
 import java.sql.*;
 import java.util.ArrayList;
-
+import com.mycompany.teamproject.userHome;
 /**
  *
  * @author jacka
@@ -14,26 +16,27 @@ import java.util.ArrayList;
 public class userHomeQueries {
     private final DatabaseConnection database;
     private final String filename = "events.db";
-    userHome a = new userHome();
+   
     
     public userHomeQueries(){
         database = new DatabaseConnection();
+        database.Connect(filename);
+        
        
     }
     
     //Gets locations for use in combobox
     public ResultSet getLocations(){
-            database.Connect(filename);
             String sql = "SELECT location_name "
                     + "FROM locations ";
             ResultSet allLocations = database.RunSQLQuery(sql);
             
             return allLocations;
+            
     }
     
     //gets music genres for use in combo box
     public ResultSet getMusicGenres(){
-        database.Connect(filename);
         String sql = "SELECT music_name "
                 + "FROM music";
         ResultSet allMusicGenres = database.RunSQLQuery(sql);
@@ -46,17 +49,9 @@ public class userHomeQueries {
     //pricePref
     //minAgepref
     //maxAgePref
-    
+
     //gets events tailored to users preferences
-    public String fetchEvents(){
-       ArrayList preferences = a.getFilters();
-        database.Connect(filename);
-        
-        String locationPref = (String) preferences.get(0);
-        Integer minAgePref = (Integer) preferences.get(1);
-        Integer maxAgePref = (Integer) preferences.get(2);
-        String genrePref = (String) preferences.get(3);
-        Integer pricePref = (Integer) preferences.get(4);
+    public void fetchEvents(){
         
         //Join 
         //location, music and event table
@@ -76,20 +71,6 @@ public class userHomeQueries {
         //min_age
         //max_age
         
-        String sql = "SELECT event_name, event_desc, event_venue, event_data, event_price"
-                + "FROM events"
-                + "INNER JOIN locations"
-                + "ON events.location_id = locations.loaction_id"
-                + "INNER JOIN music"
-                + "ON events.music_id = music.music_id"
-                + "WHERE location_name = '"+locationPref +"'"
-                + "AND music_name = '"+genrePref +"'"
-                + "AND event_price <= "+pricePref
-                + "AND min_age >= "+minAgePref
-                + "AND max_age <= "+maxAgePref
-                ;
-        
-        return sql;
         
     }
 }

@@ -4,6 +4,7 @@
 
 package com.mycompany.teamproject;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -13,7 +14,7 @@ import java.util.ArrayList;
  */
 public class TeamProject {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         userHome a = new userHome();
         a.setVisible(true);
         
