@@ -6,6 +6,7 @@ package com.mycompany.teamproject;
 
 import java.io.Console;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -55,6 +56,22 @@ public class CompanyInformationPage extends javax.swing.JFrame {
                 
         }
     }
+    
+    public void deleteComp() {
+        
+        database.Connect("events.db");
+        if(CompNameLabel != null){
+            String sql = "DELETE FROM companies WHERE company_name = '"+CompNameLabel.getText()+"';";
+            boolean pass = database.RunSQL(sql);
+            if(!pass) {
+                System.out.println("Failed to delete this event.");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Event Deleted");
+            }
+        }
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,7 +83,6 @@ public class CompanyInformationPage extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         CompanyTable = new javax.swing.JTable();
-        SaveComp = new javax.swing.JButton();
         CancelComp = new javax.swing.JButton();
         DeleteCompButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -100,11 +116,19 @@ public class CompanyInformationPage extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(CompanyTable);
 
-        SaveComp.setText("Save Changes");
-
-        CancelComp.setText("Cancel Changes");
+        CancelComp.setText("Approval");
+        CancelComp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CancelCompMouseClicked(evt);
+            }
+        });
 
         DeleteCompButton.setText("Delete Company");
+        DeleteCompButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DeleteCompButtonMouseClicked(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -156,8 +180,6 @@ public class CompanyInformationPage extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(DeleteCompButton)
                         .addGap(18, 18, 18)
-                        .addComponent(SaveComp)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(CancelComp)))
                 .addGap(50, 50, 50))
         );
@@ -170,7 +192,6 @@ public class CompanyInformationPage extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SaveComp)
                     .addComponent(CancelComp)
                     .addComponent(DeleteCompButton))
                 .addContainerGap(34, Short.MAX_VALUE))
@@ -190,6 +211,18 @@ public class CompanyInformationPage extends javax.swing.JFrame {
         CompAddressLabel.setText(model.getValueAt(row, 1).toString());
         
     }//GEN-LAST:event_CompanyTableMouseClicked
+
+    private void DeleteCompButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteCompButtonMouseClicked
+        // TODO add your handling code here:
+        deleteComp();
+    }//GEN-LAST:event_DeleteCompButtonMouseClicked
+
+    private void CancelCompMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelCompMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        DeveloperApproval obj = new DeveloperApproval();
+        obj.setVisible(true);
+    }//GEN-LAST:event_CancelCompMouseClicked
 
     /**
      * @param args the command line arguments
@@ -232,7 +265,6 @@ public class CompanyInformationPage extends javax.swing.JFrame {
     private javax.swing.JTextField CompNameLabel;
     private javax.swing.JTable CompanyTable;
     private javax.swing.JButton DeleteCompButton;
-    private javax.swing.JButton SaveComp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

@@ -35,8 +35,6 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="DeleteCompButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="SaveComp" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="CancelComp" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -54,7 +52,6 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="SaveComp" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="CancelComp" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="DeleteCompButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -103,20 +100,21 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="SaveComp">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Save Changes"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="CancelComp">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cancel Changes"/>
+        <Property name="text" type="java.lang.String" value="Approval"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CancelCompMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="DeleteCompButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete Company"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="DeleteCompButtonMouseClicked"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
