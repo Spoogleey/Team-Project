@@ -54,4 +54,14 @@ public class UsersQueries {
             System.out.println("Failed to add a second preference to the user.");
         }
     }
+    
+    // Code to logout
+    public void logoutUser() {
+        database.Connect("events.db");
+        String sql = "UPDATE users SET logged_in = 0;";
+        boolean pass = database.RunSQL(sql);
+        if(!pass) {
+            System.out.println("Failed to log out users.");
+        }
+    }
 }
