@@ -16,6 +16,8 @@ public class ApprovedEvents {
     String music;
     String date;
     double price;
+    int min;
+    int max;
     String company;
 
     public String getName() {
@@ -72,6 +74,22 @@ public class ApprovedEvents {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getMin() {
+        return min;
+    }
+
+    public void setMin(int min) {
+        this.min = min;
+    }
+
+    public int getMax() {
+        return max;
+    }
+
+    public void setMax(int max) {
+        this.max = max;
     }
 
     public String getCompany() {

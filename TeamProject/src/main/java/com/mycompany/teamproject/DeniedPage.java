@@ -20,6 +20,7 @@ public class DeniedPage extends javax.swing.JFrame {
      */
     public DeniedPage() {
         initComponents();
+        database = new DatabaseConnection();
         UpdateDeniedTable();
     }
     
@@ -34,7 +35,7 @@ public class DeniedPage extends javax.swing.JFrame {
             while(rs.next()){
                 
                 String Event = rs.getString("event_name");
-                String Reason = String.valueOf(rs.getInt("comment"));
+                String Reason = String.valueOf(rs.getString("comment"));
                 
                 //String array to store the data in the jtable
                 
@@ -63,19 +64,17 @@ public class DeniedPage extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         PendingTable = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        toApproved2 = new javax.swing.JButton();
+        toPending = new javax.swing.JButton();
+        GoBack4 = new javax.swing.JButton();
+        AddEventButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 480));
 
         PendingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Denied", "Reason for Denial"
@@ -91,48 +90,95 @@ public class DeniedPage extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(PendingTable);
 
-        jButton4.setText("jButton4");
+        toApproved2.setText("Approved");
+        toApproved2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                toApproved2MouseClicked(evt);
+            }
+        });
 
-        jButton3.setText("jButton3");
+        toPending.setText("Pending");
+        toPending.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                toPendingMouseClicked(evt);
+            }
+        });
 
-        jButton1.setText("jButton1");
+        GoBack4.setText("LogOut");
 
-        jButton2.setText("jButton2");
+        AddEventButton.setText("Add New Event");
+        AddEventButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AddEventButtonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(94, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton4)
+                        .addComponent(toApproved2)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3)
+                        .addComponent(toPending)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 725, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                        .addComponent(GoBack4))
+                    .addComponent(AddEventButton))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
+                .addComponent(AddEventButton)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
-                .addContainerGap(17, Short.MAX_VALUE))
+                    .addComponent(GoBack4)
+                    .addComponent(toApproved2)
+                    .addComponent(toPending))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ApproveButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApproveButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ApproveButton3ActionPerformed
+
+    private void DenyButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DenyButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DenyButton3ActionPerformed
+
+    private void AddEventButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddEventButtonMouseClicked
+        // TODO add your handling code here:
+
+        this.dispose();
+        AddEventPage obj = new AddEventPage();
+        obj.setVisible(true);
+    }//GEN-LAST:event_AddEventButtonMouseClicked
+
+    private void toPendingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_toPendingMouseClicked
+        // TODO add your handling code here:
+
+        this.dispose();
+        PendingPage obj = new PendingPage();
+        obj.setVisible(true);
+    }//GEN-LAST:event_toPendingMouseClicked
+
+    private void toApproved2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_toApproved2MouseClicked
+        // TODO add your handling code here:
+
+        this.dispose();
+        ApprovedPage obj = new ApprovedPage();
+        obj.setVisible(true);
+    }//GEN-LAST:event_toApproved2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -170,11 +216,11 @@ public class DeniedPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddEventButton;
+    private javax.swing.JButton GoBack4;
     private javax.swing.JTable PendingTable;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton toApproved2;
+    private javax.swing.JButton toPending;
     // End of variables declaration//GEN-END:variables
 }

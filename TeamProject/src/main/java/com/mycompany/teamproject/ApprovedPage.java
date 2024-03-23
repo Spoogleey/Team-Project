@@ -20,12 +20,13 @@ public class ApprovedPage extends javax.swing.JFrame {
      */
     public ApprovedPage() {
         initComponents();
+        database = new DatabaseConnection();
         UpdateApprovedTable();
     }
      private void UpdateApprovedTable(){
         database.Connect("events.db");
         //Query for pending events
-        String sql = "SELECT * FROM events WHERE approved=1";
+        String sql = "SELECT * FROM events WHERE approved=1 AND company_id=1";
         try{
             rs = database.RunSQLQuery(sql);
         
@@ -38,7 +39,7 @@ public class ApprovedPage extends javax.swing.JFrame {
                 //String array to store the data in the jtable
                 
                 String tbData [] = {id, Event};
-                DefaultTableModel DenyModel = (DefaultTableModel)PendingTable.getModel();
+                DefaultTableModel DenyModel = (DefaultTableModel)ApprovedTable.getModel();
                 
                 //add the string array data into the jtable
                 DenyModel.addRow(tbData);
@@ -50,6 +51,16 @@ public class ApprovedPage extends javax.swing.JFrame {
         
        
     }
+     
+     public void selectEvent(){
+         
+          int row = ApprovedTable.getSelectedRow();//get selected row index
+        
+        DefaultTableModel model = (DefaultTableModel)ApprovedTable.getModel();
+        
+        String EventName = model.getValueAt(row, 1).toString();
+     }
+     
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -61,72 +72,132 @@ public class ApprovedPage extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        PendingTable = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        ApprovedTable = new javax.swing.JTable();
+        toDenied2 = new javax.swing.JButton();
+        toPending2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        AddEventButton = new javax.swing.JButton();
+        openAnalytics = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        PendingTable.setModel(new javax.swing.table.DefaultTableModel(
+        ApprovedTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Event ID", "Approved Event"
             }
         ));
-        jScrollPane1.setViewportView(PendingTable);
+        ApprovedTable.setPreferredSize(new java.awt.Dimension(700, 300));
+        jScrollPane1.setViewportView(ApprovedTable);
 
-        jButton4.setText("jButton4");
+        toDenied2.setText("Denied");
+        toDenied2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                toDenied2MouseClicked(evt);
+            }
+        });
 
-        jButton3.setText("jButton3");
+        toPending2.setText("Pending");
+        toPending2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                toPending2MouseClicked(evt);
+            }
+        });
 
-        jButton1.setText("jButton1");
+        jButton1.setText("LogOut");
 
-        jButton2.setText("jButton2");
+        AddEventButton.setText("Add New Event");
+        AddEventButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AddEventButtonMouseClicked(evt);
+            }
+        });
+
+        openAnalytics.setText("Open Analytics");
+        openAnalytics.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                openAnalyticsMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 725, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 94, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(400, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(openAnalytics, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(toDenied2)
+                                .addGap(18, 18, 18)
+                                .addComponent(toPending2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1))
+                            .addComponent(AddEventButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(AddEventButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addComponent(toPending2)
+                    .addComponent(toDenied2)
+                    .addComponent(openAnalytics))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void toDenied2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_toDenied2MouseClicked
+        // TODO add your handling code here:
+        
+        this.dispose();
+        DeniedPage obj = new DeniedPage();
+        obj.setVisible(true);
+        
+    }//GEN-LAST:event_toDenied2MouseClicked
+
+    private void toPending2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_toPending2MouseClicked
+        // TODO add your handling code here:
+        
+        this.dispose();
+        PendingPage obj = new PendingPage();
+        obj.setVisible(true);
+    }//GEN-LAST:event_toPending2MouseClicked
+
+    private void AddEventButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddEventButtonMouseClicked
+        // TODO add your handling code here:
+        
+        this.dispose();
+        AddEventPage obj = new AddEventPage();
+        obj.setVisible(true);
+    }//GEN-LAST:event_AddEventButtonMouseClicked
+
+    private void openAnalyticsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openAnalyticsMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        AnalyticsScreen obj = new AnalyticsScreen();
+        obj.setVisible(true);
+    }//GEN-LAST:event_openAnalyticsMouseClicked
+
     /**
-     * @param args the command line arguments
+     * @param args the commandtoPending2arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -161,11 +232,12 @@ public class ApprovedPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable PendingTable;
+    private javax.swing.JButton AddEventButton;
+    private javax.swing.JTable ApprovedTable;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton openAnalytics;
+    private javax.swing.JButton toDenied2;
+    private javax.swing.JButton toPending2;
     // End of variables declaration//GEN-END:variables
 }

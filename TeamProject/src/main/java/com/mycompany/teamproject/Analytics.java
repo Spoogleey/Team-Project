@@ -11,6 +11,7 @@ package com.mycompany.teamproject;
 public class Analytics {
     String name;
     int tickets;
+    int left;
     double sales;
     double booking;
     double profit;
@@ -30,6 +31,14 @@ public class Analytics {
 
     public void setTickets(int tickets) {
         this.tickets = tickets;
+    }
+
+    public int getLeft() {
+        return left;
+    }
+
+    public void setLeft(int left) {
+        this.left = left;
     }
 
     public double getSales() {

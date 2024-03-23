@@ -4,6 +4,7 @@
 
 package com.mycompany.teamproject;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -13,9 +14,12 @@ import java.util.ArrayList;
  */
 public class TeamProject {
 
-    public static void main(String[] args) {
-        AnalyticsScreen a = new AnalyticsScreen();
+    public static void main(String[] args) throws SQLException {
+        UsersQueries manager = new UsersQueries();
+        manager.logoutUser();
+        userHome a = new userHome();
         a.setVisible(true);
+        
     }
     
 }

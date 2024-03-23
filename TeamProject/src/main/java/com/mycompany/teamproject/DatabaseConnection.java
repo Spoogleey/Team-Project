@@ -23,6 +23,7 @@ public class DatabaseConnection {
     // Code to connect to the SQLite database.
     public boolean Connect(String filename)
     {
+        filename = "events.db";
         try {
             String url = "jdbc:sqlite:"+filename;
             conn = DriverManager.getConnection(url);

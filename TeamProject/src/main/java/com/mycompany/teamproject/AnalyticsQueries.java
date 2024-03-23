@@ -20,9 +20,9 @@ public class AnalyticsQueries {
     }
     
     // Add new analytics for an event
-    public void addAnalytics(int id, int tickets, double booking, int company) {
+    public void addAnalytics(int id, int tickets, int left, double booking, int company) {
         database.Connect("events.db");
-        String sql = "INSERT INTO analytics (event_id, tickets_sold, booking_fee, company_id) VALUES ("+id+", "+tickets+", "+booking+", "+company+");";
+        String sql = "INSERT INTO analytics (event_id, tickets_sold, booking_fee, company_id) VALUES ("+id+", "+tickets+", "+left+", "+booking+", "+company+");";
         boolean pass = database.RunSQL(sql);
         if(!pass) {
             System.out.println("Failed to add new event analytics.");
@@ -32,7 +32,7 @@ public class AnalyticsQueries {
     // View the analytics for the events
     public ArrayList<Analytics> getAnalytics(String name) {
         database.Connect("events.db");
-        String sql = "SELECT event_name, tickets_sold, sales, booking_fee, profit, company_name FROM analytics INNER JOIN events ON events.event_id = analytics.event_id INNER JOIN companies ON companies.company_id = analytics.company_id WHERE company_name = '"+name+"';";
+        String sql = "SELECT event_name, tickets_sold, tickets_left, sales, booking_fee, profit, company_name FROM analytics INNER JOIN events ON events.event_id = analytics.event_id INNER JOIN companies ON companies.company_id = analytics.company_id WHERE company_name = '"+name+"';";
         ResultSet rs = database.RunSQLQuery(sql);
         ArrayList<Analytics> results = new ArrayList<>();
         try {
@@ -40,10 +40,11 @@ public class AnalyticsQueries {
                 Analytics analytics = new Analytics();
                 analytics.setName(rs.getString(1));
                 analytics.setTickets(rs.getInt(2));
-                analytics.setSales(rs.getDouble(3));
-                analytics.setBooking(rs.getDouble(4));
-                analytics.setProfit(rs.getDouble(5));
-                analytics.setCompany(rs.getString(6));
+                analytics.setLeft(rs.getInt(3));
+                analytics.setSales(rs.getDouble(4));
+                analytics.setBooking(rs.getDouble(5));
+                analytics.setProfit(rs.getDouble(6));
+                analytics.setCompany(rs.getString(7));
                 results.add(analytics);
             }
         } catch(SQLException e) {

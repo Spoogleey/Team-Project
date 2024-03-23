@@ -19,12 +19,61 @@ public class AddEventPage extends javax.swing.JFrame {
     public AddEventPage() {
         initComponents();
         database = new DatabaseConnection();
-        updateCombo();
+        updateGenreCombo();
+        updatelocationCombo();
+        updateCompCombo();
         
     }
-
+    
+    // call classes from other pages to allow access to adding data functions
+    
+    private final ApprovedEventsQueries InsertEvent = new ApprovedEventsQueries();
+    private final LocationQueries InsertLocation = new LocationQueries();
+    private final MusicQueries InsertMusic = new MusicQueries();
+    private final CompaniesQueries InsertComp = new CompaniesQueries();
+    
+    String compInput = "";
+    String musicInput = "";
+    String locationInput = "";
+    //Add Events into the SQLite Table
+    
+    public void AddingEvent(){
+        
+        
+        InsertEvent.addEvent(nameText.getText(), descText.getText(), venueText.getText(), LocationCombo.getSelectedIndex() + 1, 
+                musicText.getSelectedIndex() + 1, dateText.getText(), Double.parseDouble(priceText.getText()),
+                Integer.parseInt(minAge.getText()), Integer.parseInt(maxAge.getText()), companyText.getSelectedIndex() + 1 );
+        
+        JOptionPane.showMessageDialog(null, "Event added");
+        AddEventPage.setVisible(false);
+    }
+    
+    //Add Companies into the SQLite Table
+    
+    public void AddingComp(){
+        InsertComp.addCompany(compInput);
+    }
+    
+    //Add Genre into the SQLite Table
+    
+    public void AddingMusic(){
+        InsertMusic.addMusic(musicInput);
+    }
+    
+    //Add Location into the SQLite Table
+    
+    public void AddingLocation(){
+        InsertLocation.addLocation(locationInput);
+    }
+    
+    public static boolean ValidateInput(String input){
+        return input.length()>=3;
+    }
+    
+    
     //update combo box for database details
-    private void updateCombo(){
+    
+    private void updateGenreCombo(){
         database.Connect("events.db");
         String sql = "SELECT * FROM music";
         try{
@@ -37,17 +86,37 @@ public class AddEventPage extends javax.swing.JFrame {
         
     }
 
-    public void AddEventFunction(){
+    private void updatelocationCombo(){
+        database.Connect("events.db");
+        String sql = "SELECT * FROM locations";
         try{
-            String insert = "INSERT INTO events(event_name, event_desc, event_venue, event_date, event_price, approved)"
-                    + "VALUES ("+nameText.getText()+", "+descText.getText()+", "+venueText.getText()+", "+dateText.getText()+", "+priceText.getText()+","+0+";";
-            rs = database.RunSQLQuery(insert);
-            
-        JOptionPane.showMessageDialog(null, "Event Added Successfully. Please allow for adequate time to review the event");    
-        }catch (Exception e){
-            JOptionPane.showMessageDialog(null, e);
+            rs = database.RunSQLQuery(sql);
+            while(rs.next()){
+                LocationCombo.addItem(rs.getString("location_name"));
+            }
+        } catch (Exception e){  
         }
+        
     }
+    
+    private void updateCompCombo(){
+        database.Connect("events.db");
+        String sql = "SELECT * FROM companies";
+        try{
+            rs = database.RunSQLQuery(sql);
+            while(rs.next()){
+                companyText.addItem(rs.getString("company_name"));
+            }
+        } catch (Exception e){  
+        }
+        
+    }
+    
+    
+ 
+    
+   
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,18 +127,40 @@ public class AddEventPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        AddEventPage = new javax.swing.JPanel();
         nameText = new javax.swing.JTextField();
         descText = new javax.swing.JTextField();
         venueText = new javax.swing.JTextField();
-        locationText = new javax.swing.JTextField();
         priceText = new javax.swing.JTextField();
         musicText = new javax.swing.JComboBox<>();
         dateText = new javax.swing.JTextField();
         addEventButton = new javax.swing.JButton();
         clearButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        minAge = new javax.swing.JTextField();
+        EventLabel = new javax.swing.JLabel();
+        DescLabel = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        LocationCombo = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        maxAge = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        maxAge1 = new javax.swing.JTextField();
+        companyLabel = new javax.swing.JLabel();
+        companyText = new javax.swing.JComboBox<>();
+        newCompButton = new javax.swing.JButton();
+        newLocalButton = new javax.swing.JButton();
+        newMusicButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("AddEvent");
+
+        AddEventPage.setPreferredSize(new java.awt.Dimension(800, 460));
 
         nameText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,19 +168,32 @@ public class AddEventPage extends javax.swing.JFrame {
             }
         });
 
-        descText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        descText.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        descText.setMinimumSize(new java.awt.Dimension(160, 22));
+        descText.setPreferredSize(new java.awt.Dimension(160, 22));
 
+        venueText.setMaximumSize(new java.awt.Dimension(160, 22));
+        venueText.setMinimumSize(new java.awt.Dimension(160, 22));
+        venueText.setPreferredSize(new java.awt.Dimension(160, 22));
+
+        priceText.setMinimumSize(new java.awt.Dimension(160, 22));
+        priceText.setPreferredSize(new java.awt.Dimension(160, 22));
         priceText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 priceTextActionPerformed(evt);
             }
         });
 
+        musicText.setMinimumSize(new java.awt.Dimension(160, 22));
+        musicText.setPreferredSize(new java.awt.Dimension(160, 22));
         musicText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 musicTextActionPerformed(evt);
             }
         });
+
+        dateText.setMinimumSize(new java.awt.Dimension(160, 22));
+        dateText.setPreferredSize(new java.awt.Dimension(160, 22));
 
         addEventButton.setText("Add Event");
         addEventButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -116,55 +220,220 @@ public class AddEventPage extends javax.swing.JFrame {
                 cancelButtonMouseClicked(evt);
             }
         });
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
+
+        minAge.setMinimumSize(new java.awt.Dimension(160, 22));
+        minAge.setPreferredSize(new java.awt.Dimension(160, 22));
+        minAge.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                minAgeActionPerformed(evt);
+            }
+        });
+
+        EventLabel.setText("Event Name:");
+
+        DescLabel.setText("Event Description:");
+
+        jLabel3.setText("Event Venue:");
+
+        jLabel4.setText("Location of venue:");
+
+        jLabel5.setText("Genre:");
+
+        jLabel6.setText("Date of Event:");
+
+        jLabel7.setText("Price:");
+
+        jLabel8.setText("Minimum Age:");
+
+        LocationCombo.setPreferredSize(new java.awt.Dimension(160, 22));
+
+        jLabel9.setText("Maximum Age:");
+
+        maxAge.setMinimumSize(new java.awt.Dimension(160, 22));
+        maxAge.setPreferredSize(new java.awt.Dimension(160, 22));
+        maxAge.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                maxAgeActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("Maximum Age:");
+
+        maxAge1.setMinimumSize(new java.awt.Dimension(160, 22));
+        maxAge1.setPreferredSize(new java.awt.Dimension(160, 22));
+        maxAge1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                maxAge1ActionPerformed(evt);
+            }
+        });
+
+        companyLabel.setText("Company:");
+
+        companyText.setMinimumSize(new java.awt.Dimension(160, 22));
+
+        newCompButton.setText("Add New Company");
+        newCompButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newCompButtonMouseClicked(evt);
+            }
+        });
+        newCompButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newCompButtonActionPerformed(evt);
+            }
+        });
+
+        newLocalButton.setText("Add New Location");
+        newLocalButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newLocalButtonMouseClicked(evt);
+            }
+        });
+        newLocalButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newLocalButtonActionPerformed(evt);
+            }
+        });
+
+        newMusicButton.setText("Add New Genre");
+        newMusicButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newMusicButtonMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout AddEventPageLayout = new javax.swing.GroupLayout(AddEventPage);
+        AddEventPage.setLayout(AddEventPageLayout);
+        AddEventPageLayout.setHorizontalGroup(
+            AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddEventPageLayout.createSequentialGroup()
+                .addContainerGap(388, Short.MAX_VALUE)
+                .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddEventPageLayout.createSequentialGroup()
+                        .addComponent(addEventButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(clearButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(cancelButton))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddEventPageLayout.createSequentialGroup()
+                        .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(AddEventPageLayout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(18, 18, 18)
+                                .addComponent(maxAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(AddEventPageLayout.createSequentialGroup()
+                                .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(companyLabel))
+                                .addGap(18, 18, 18)
+                                .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(maxAge1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(companyText, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(AddEventPageLayout.createSequentialGroup()
+                                .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(DescLabel)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel3)
+                                    .addComponent(EventLabel))
+                                .addGap(2, 2, 2)
+                                .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(nameText)
+                                    .addComponent(musicText, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(priceText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(dateText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(venueText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(descText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(LocationCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(minAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(newCompButton)
+                            .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(newMusicButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(newLocalButton, javax.swing.GroupLayout.Alignment.LEADING)))))
+                .addContainerGap())
+        );
+        AddEventPageLayout.setVerticalGroup(
+            AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddEventPageLayout.createSequentialGroup()
+                .addContainerGap(10, Short.MAX_VALUE)
+                .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddEventPageLayout.createSequentialGroup()
+                        .addComponent(newLocalButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(newMusicButton)
+                        .addGap(192, 192, 192)
+                        .addComponent(newCompButton))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddEventPageLayout.createSequentialGroup()
+                        .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(EventLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(descText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DescLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(venueText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(LocationCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(musicText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(dateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(priceText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(minAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(maxAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addGap(16, 16, 16)
+                        .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(maxAge1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10))
+                        .addGap(18, 18, 18)
+                        .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(companyLabel)
+                            .addComponent(companyText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(55, 55, 55)
+                .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addEventButton)
+                    .addComponent(clearButton)
+                    .addComponent(cancelButton))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(192, 192, 192)
-                .addComponent(addEventButton)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(musicText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(priceText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(locationText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(venueText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(descText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(clearButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(cancelButton)))
-                .addContainerGap(344, Short.MAX_VALUE))
+            .addComponent(AddEventPage, javax.swing.GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(descText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(venueText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(locationText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(musicText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(dateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(priceText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addEventButton)
-                    .addComponent(clearButton)
-                    .addComponent(cancelButton))
-                .addGap(76, 76, 76))
+            .addComponent(AddEventPage, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
         );
 
         pack();
@@ -181,18 +450,22 @@ public class AddEventPage extends javax.swing.JFrame {
 
     private void addEventButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addEventButtonMouseClicked
         // TODO add your handling code here:
-        AddEventFunction();
+        AddingEvent();
     }//GEN-LAST:event_addEventButtonMouseClicked
 
     private void clearButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearButtonMouseClicked
         // TODO add your handling code here:
+        //Sets values to null in the text boxes
         nameText.setText("");
         descText.setText("");
         dateText.setText("");
-        locationText.setText("");
+        LocationCombo.setSelectedItem(null);
         musicText.setSelectedItem(null);
         priceText.setText("");
         venueText.setText("");
+        minAge.setText("");
+        minAge.setText("");
+        companyText.setSelectedItem(null);
     }//GEN-LAST:event_clearButtonMouseClicked
 
     private void addEventButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEventButtonActionPerformed
@@ -206,26 +479,92 @@ public class AddEventPage extends javax.swing.JFrame {
 
     private void cancelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelButtonMouseClicked
         // TODO add your handling code here:
-        int cancel = JOptionPane.YES_NO_OPTION;
-        JOptionPane.showConfirmDialog(null, "Are you sure?", "Warning", cancel);
-        if(cancel == JOptionPane.YES_OPTION){
-            new AddEventPage().setVisible(false);
-        }
-        //////////////////////YES NO CONFIRM NEEDS COMPLETE
+        
+        this.dispose();
+        PendingPage obj = new PendingPage();
+        obj.setVisible(true);
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+   
     }//GEN-LAST:event_cancelButtonMouseClicked
+
+    private void minAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minAgeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_minAgeActionPerformed
+
+    private void maxAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maxAgeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_maxAgeActionPerformed
+
+    private void maxAge1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maxAge1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_maxAge1ActionPerformed
+
+    private void newLocalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newLocalButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newLocalButtonActionPerformed
+
+    private void newCompButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newCompButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newCompButtonActionPerformed
+
+    private void newCompButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newCompButtonMouseClicked
+        // TODO add your handling code here:
+        //opens option panel for typing in new company
+        
+        compInput = JOptionPane.showInputDialog("Company Name:");
+        
+        if(compInput != null && ValidateInput(compInput)){
+            JOptionPane.showMessageDialog(null, "Valid Company Name");
+            AddingComp();
+            AddEventPage.setVisible(false);
+            AddEventPage.setVisible(true);
+            
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Invalid Company Name");
+        }
+        
+    }//GEN-LAST:event_newCompButtonMouseClicked
+
+    private void newMusicButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newMusicButtonMouseClicked
+        // TODO add your handling code here:
+        musicInput = JOptionPane.showInputDialog("Music Genre:");
+        if(musicInput != null && ValidateInput(musicInput)){
+            JOptionPane.showMessageDialog(null, "Valid Genre");
+            AddingMusic();
+            AddEventPage.setVisible(false);
+            AddEventPage.setVisible(true);
+            
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Invalid Genre");
+        }
+    }//GEN-LAST:event_newMusicButtonMouseClicked
+
+    private void newLocalButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newLocalButtonMouseClicked
+        // TODO add your handling code here:
+        locationInput = JOptionPane.showInputDialog("Location(City):");
+        if(locationInput != null && ValidateInput(locationInput)){
+            
+            JOptionPane.showMessageDialog(null, "Valid Location.");
+            AddingLocation();
+            AddEventPage.setVisible(false);
+            AddEventPage.setVisible(true);
+            
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Invalid Location");
+        }
+    }//GEN-LAST:event_newLocalButtonMouseClicked
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -263,14 +602,33 @@ public class AddEventPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel AddEventPage;
+    private javax.swing.JLabel DescLabel;
+    private javax.swing.JLabel EventLabel;
+    private javax.swing.JComboBox<String> LocationCombo;
     private javax.swing.JButton addEventButton;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton clearButton;
+    private javax.swing.JLabel companyLabel;
+    private javax.swing.JComboBox<String> companyText;
     private javax.swing.JTextField dateText;
     private javax.swing.JTextField descText;
-    private javax.swing.JTextField locationText;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField maxAge;
+    private javax.swing.JTextField maxAge1;
+    private javax.swing.JTextField minAge;
     private javax.swing.JComboBox<String> musicText;
     private javax.swing.JTextField nameText;
+    private javax.swing.JButton newCompButton;
+    private javax.swing.JButton newLocalButton;
+    private javax.swing.JButton newMusicButton;
     private javax.swing.JTextField priceText;
     private javax.swing.JTextField venueText;
     // End of variables declaration//GEN-END:variables

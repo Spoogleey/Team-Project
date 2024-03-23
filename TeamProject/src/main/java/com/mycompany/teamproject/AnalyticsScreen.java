@@ -4,6 +4,9 @@
  */
 package com.mycompany.teamproject;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author w20009414
@@ -15,7 +18,6 @@ public class AnalyticsScreen extends javax.swing.JFrame {
      */
     public AnalyticsScreen() {
         initComponents();
-        TotalTicketsSold.setText("220");
         TotalLeft.setText("220");
         TotalRevenue.setText("220");
         TotalProfit.setText("$"+ "220");
@@ -23,18 +25,124 @@ public class AnalyticsScreen extends javax.swing.JFrame {
         jProgressBar2.setValue(93);
         jProgressBar3.setValue(72);
         jProgressBar4.setValue(45);
+        addRowToTable();
+        
     }
-    /**
+    
     public void addRowToTable() {
-        DefaultTableModel model = (DefaultTableModel) allTable.getModel();
-        AnalyticsQueries b = new AnalyticsQueries();
-        ArrayList<Analytics> array = b.getAnalytics("m");
+        DefaultTableModel model1 = (DefaultTableModel) allTable1.getModel();
+        DefaultTableModel model2 = (DefaultTableModel) allTable2.getModel();
+        DefaultTableModel model3 = (DefaultTableModel) allTable3.getModel();
+        DefaultTableModel model4 = (DefaultTableModel) allTable4.getModel();
+        int totalTicketsSold = 0;
+        int totalTicketsLeft = 0;
+        double totalProfit = 0;
+        double totalSales = 0;
+        int i = 0;
+        AnalyticsQueries manager = new AnalyticsQueries(); // Create an instance of AnalyticsManager
+        String companyName = "Melody Mingle"; // The company name you're interested in
+        ArrayList<Analytics> analyticsData = manager.getAnalytics(companyName); // Call the method
         Object rowData[] = new Object[100];
-        for(int i = 0; i < array.size(); i++) {
-            rowData[0] = array.get(i).getChorename();
-            model.addRow(rowData);
+        // Assuming you want to print the fetched data
+        for(Analytics analytics : analyticsData) {
+            System.out.println("Event Name: " + analytics.getName() + ", Tickets Sold: " + analytics.getTickets());
+            totalTicketsSold += analytics.getTickets();
+            totalTicketsLeft += analytics.getLeft();
+            totalProfit += analytics.getProfit();
+            totalSales += analytics.getSales();
+            if (i == 0){
+                int tickets = analytics.getTickets();
+                int left = analytics.getLeft();
+                int totalTickets = tickets + left;
+                float percent = (float) (tickets * 100 / totalTickets);
+                int percentage = (int) percent;
+                String percentage1 = Integer.toString(percentage);
+                percent1.setText(percentage1 + "%");
+                jProgressBar1.setValue(percentage);
+                
+                jLabel5.setText(analytics.getName());
+                ProgressEvent1.setText(analytics.getName());
+                rowData[0] = "Tickets Sold: " + analytics.getTickets();
+                model1.addRow(rowData);
+                rowData[0] = "Tickets Left: " + analytics.getLeft();
+                model1.addRow(rowData);
+                rowData[0] = "Revenue: $" + analytics.getSales();
+                model1.addRow(rowData);
+                rowData[0] = "Profit: $" + analytics.getProfit();
+                model1.addRow(rowData);
+            }
+            else if (i == 1){
+                int tickets = analytics.getTickets();
+                int left = analytics.getLeft();
+                int totalTickets = tickets + left;
+                float percent = (float) (tickets * 100 / totalTickets);
+                int percentage = (int) percent;
+                String percentage1 = Integer.toString(percentage);
+                percent2.setText(percentage1 + "%");
+                jProgressBar2.setValue(percentage);
+                jLabel6.setText(analytics.getName());
+                ProgressEvent2.setText(analytics.getName());
+                rowData[0] = "Tickets Sold: " + analytics.getTickets();
+                model2.addRow(rowData);
+                rowData[0] = "Tickets Left: " + analytics.getLeft();
+                model2.addRow(rowData);
+                rowData[0] = "Revenue: $" + analytics.getSales();
+                model2.addRow(rowData);
+                rowData[0] = "Profit: $" + analytics.getProfit();
+                model2.addRow(rowData);
+            }
+            else if (i == 2){
+                int tickets = analytics.getTickets();
+                int left = analytics.getLeft();
+                int totalTickets = tickets + left;
+                float percent = (float) (tickets * 100 / totalTickets);
+                int percentage = (int) percent;
+                String percentage1 = Integer.toString(percentage);
+                percent3.setText(percentage1 + "%");
+                jProgressBar3.setValue(percentage);
+                jLabel7.setText(analytics.getName());
+                ProgressEvent3.setText(analytics.getName());
+                rowData[0] = "Tickets Sold: " + analytics.getTickets();
+                model3.addRow(rowData);
+                rowData[0] = "Tickets Left: " + analytics.getLeft();
+                model3.addRow(rowData);
+                rowData[0] = "Revenue: $" + analytics.getSales();
+                model3.addRow(rowData);
+                rowData[0] = "Profit: $" + analytics.getProfit();
+                model3.addRow(rowData);
+            }
+            else if (i == 3){
+                int tickets = analytics.getTickets();
+                int left = analytics.getLeft();
+                int totalTickets = tickets + left;
+                float percent = (float) (tickets * 100 / totalTickets);
+                int percentage = (int) percent;
+                String percentage1 = Integer.toString(percentage);
+                percent4.setText(percentage1 + "%");
+                jProgressBar4.setValue(percentage);
+                jLabel8.setText(analytics.getName());
+                ProgressEvent4.setText(analytics.getName());
+                rowData[0] = "Tickets Sold: " + analytics.getTickets();
+                model4.addRow(rowData);
+                rowData[0] = "Tickets Left: " + analytics.getLeft();
+                model4.addRow(rowData);
+                rowData[0] = "Revenue: $" + analytics.getSales();
+                model4.addRow(rowData);
+                rowData[0] = "Profit: $" + analytics.getProfit();
+                model4.addRow(rowData);
+            }
+            i+=1;
         }
-    */
+        i=0;
+        TotalTicketsSold.setText(String.valueOf(totalTicketsSold));
+        TotalLeft.setText(String.valueOf(totalTicketsLeft));
+        TotalProfit.setText("£" + totalProfit);
+        TotalRevenue.setText("£" + totalSales);
+
+        
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,6 +157,9 @@ public class AnalyticsScreen extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         HomeButton = new javax.swing.JButton();
+        HomeButton1 = new javax.swing.JButton();
+        HomeButton2 = new javax.swing.JButton();
+        HomeButton3 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jProgressBar1 = new javax.swing.JProgressBar();
         jProgressBar2 = new javax.swing.JProgressBar();
@@ -59,6 +170,10 @@ public class AnalyticsScreen extends javax.swing.JFrame {
         ProgressEvent2 = new javax.swing.JLabel();
         ProgressEvent3 = new javax.swing.JLabel();
         ProgressEvent4 = new javax.swing.JLabel();
+        percent1 = new javax.swing.JLabel();
+        percent2 = new javax.swing.JLabel();
+        percent3 = new javax.swing.JLabel();
+        percent4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -106,11 +221,35 @@ public class AnalyticsScreen extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        HomeButton.setText("Home");
+        HomeButton.setText("Add Events");
         HomeButton.setToolTipText("");
         HomeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HomeButtonActionPerformed(evt);
+            }
+        });
+
+        HomeButton1.setText("Approved Events");
+        HomeButton1.setToolTipText("");
+        HomeButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeButton1ActionPerformed(evt);
+            }
+        });
+
+        HomeButton2.setText("Denied Events");
+        HomeButton2.setToolTipText("");
+        HomeButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeButton2ActionPerformed(evt);
+            }
+        });
+
+        HomeButton3.setText("Pending Events");
+        HomeButton3.setToolTipText("");
+        HomeButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeButton3ActionPerformed(evt);
             }
         });
 
@@ -120,14 +259,24 @@ public class AnalyticsScreen extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(HomeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(HomeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(HomeButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(HomeButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(HomeButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addComponent(HomeButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(HomeButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(HomeButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(HomeButton2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -147,6 +296,18 @@ public class AnalyticsScreen extends javax.swing.JFrame {
         ProgressEvent4.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
         ProgressEvent4.setText("Event4");
 
+        percent1.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        percent1.setText("%");
+
+        percent2.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        percent2.setText("%");
+
+        percent3.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        percent3.setText("%");
+
+        percent4.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        percent4.setText("%");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -154,16 +315,28 @@ public class AnalyticsScreen extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jProgressBar3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jProgressBar4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(percent1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(percent2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jProgressBar3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(percent3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jProgressBar4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(percent4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel9)
                     .addComponent(ProgressEvent1)
                     .addComponent(ProgressEvent2)
                     .addComponent(ProgressEvent3)
                     .addComponent(ProgressEvent4))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,19 +346,28 @@ public class AnalyticsScreen extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ProgressEvent1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(percent1))
                 .addGap(1, 1, 1)
                 .addComponent(ProgressEvent2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(percent2))
                 .addGap(2, 2, 2)
                 .addComponent(ProgressEvent3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jProgressBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jProgressBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(percent3))
                 .addGap(1, 1, 1)
-                .addComponent(ProgressEvent4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jProgressBar4, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(ProgressEvent4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jProgressBar4, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(percent4))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -316,25 +498,15 @@ public class AnalyticsScreen extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
         jLabel5.setText("Event 1");
 
+        allTable1.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
         allTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2"
+                "Analytics"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane2.setViewportView(allTable1);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -364,19 +536,17 @@ public class AnalyticsScreen extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
         jLabel6.setText("Event 1");
 
+        allTable2.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
         allTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2"
+                "Analytics"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -413,19 +583,17 @@ public class AnalyticsScreen extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
         jLabel7.setText("Event 1");
 
+        allTable3.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
         allTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2"
+                "Analytics"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -462,19 +630,17 @@ public class AnalyticsScreen extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
         jLabel8.setText("Event 1");
 
+        allTable4.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
         allTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2"
+                "Analytics"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -513,7 +679,7 @@ public class AnalyticsScreen extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -531,7 +697,7 @@ public class AnalyticsScreen extends javax.swing.JFrame {
                             .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
                             .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -565,7 +731,7 @@ public class AnalyticsScreen extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 643, Short.MAX_VALUE)
+            .addGap(0, 685, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -574,7 +740,7 @@ public class AnalyticsScreen extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 415, Short.MAX_VALUE)
+            .addGap(0, 418, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -588,6 +754,18 @@ public class AnalyticsScreen extends javax.swing.JFrame {
     private void HomeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_HomeButtonActionPerformed
+
+    private void HomeButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HomeButton1ActionPerformed
+
+    private void HomeButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HomeButton2ActionPerformed
+
+    private void HomeButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HomeButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -626,6 +804,9 @@ public class AnalyticsScreen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton HomeButton;
+    private javax.swing.JButton HomeButton1;
+    private javax.swing.JButton HomeButton2;
+    private javax.swing.JButton HomeButton3;
     private javax.swing.JLabel ProgressEvent1;
     private javax.swing.JLabel ProgressEvent2;
     private javax.swing.JLabel ProgressEvent3;
@@ -669,5 +850,10 @@ public class AnalyticsScreen extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel percent1;
+    private javax.swing.JLabel percent2;
+    private javax.swing.JLabel percent3;
+    private javax.swing.JLabel percent4;
     // End of variables declaration//GEN-END:variables
+
 }
