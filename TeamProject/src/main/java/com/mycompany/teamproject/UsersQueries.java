@@ -4,6 +4,10 @@
  */
 package com.mycompany.teamproject;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 /**
  *
  * @author green
@@ -18,7 +22,7 @@ public class UsersQueries {
     // Code to add new user
     public void addUser(String first, String second, String username, String password, String dob, String email, String preference) {
         database.Connect("events.db");
-        String sql = "INSERT INTO users (firstname, surname, username, password, dateofbirth, email, preference1) VALUES ('"+first+"', '"+second+"', '"+username+"', '"+password+"', '"+dob+"', '"+email+"', '"+preference+"');";
+        String sql = "INSERT INTO users (firstname, surname, username, password, dateofbirth, email, preference1, points) VALUES ('"+first+"', '"+second+"', '"+username+"', '"+password+"', '"+dob+"', '"+email+"', '"+preference+"', 0);";
         boolean pass = database.RunSQL(sql);
         if(!pass) {
             System.out.println("Failed to add a new user.");
@@ -35,23 +39,32 @@ public class UsersQueries {
         }
     }
     
-    // Add a preference second preference to the user
-    public void addPreference2(String preference, int user) {
+    // Code to select the username and password of users
+    public ArrayList<Users> selectUsers() {
         database.Connect("events.db");
-        String sql = "UPDATE users SET preference2 = '"+preference+"' WHERE user_id = "+user+";";
-        boolean pass = database.RunSQL(sql);
-        if(!pass) {
-            System.out.println("Failed to add a second preference to the user.");
+        String sql = "SELECT username, password FROM users;";
+        ResultSet rs = database.RunSQLQuery(sql);
+        ArrayList<Users> results = new ArrayList<>();
+        try {
+            while(rs.next()) {
+                Users user = new Users();
+                user.setUsername(rs.getString(1));
+                user.setPassword(rs.getString(2));
+                results.add(user);
+            }
+        } catch(SQLException e) {
+            System.out.println("Failed to select users: " +e.getMessage());
         }
+        return results;
     }
     
-    // Add a third preference to the user
-    public void addPreference3(String preference, int user) {
+    // Code for logging in a user
+    public void loginUser(String user) {
         database.Connect("events.db");
-        String sql = "UPDATE users SET preference3 = '"+preference+"' WHERE user_id = "+user+";";
+        String sql = "UPDATE users SET logged_in = 1 WHERE username = '"+user+"';";
         boolean pass = database.RunSQL(sql);
         if(!pass) {
-            System.out.println("Failed to add a second preference to the user.");
+            System.out.println("Failed to login the user.");
         }
     }
     
