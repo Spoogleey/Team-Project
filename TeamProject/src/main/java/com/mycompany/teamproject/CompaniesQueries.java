@@ -30,30 +30,34 @@ public class CompaniesQueries {
     }
     
     // Code to select companies with users logged in
-    public void selectLoggedUser() {
+    public String selectLoggedUser() {
+        String name ="";
         database.Connect("events.db");
         String sql = "SELECT company_name FROM users INNER JOIN companies ON companies.company_id = users.company_id WHERE logged_in = 1;";
         ResultSet rs = database.RunSQLQuery(sql);
         try {
             while(rs.next()) {
-                String name = rs.getString(1);
+                name = rs.getString(1);
             }
         } catch(SQLException e) {
             System.out.println("Failed to select the company name: " +e.getMessage());
         }
+        return name;
     }
     
     // Code to get the company id
-    public void selectCompany() {
+    public int selectCompany() {
+        int id =0;
         database.Connect("events.db");
         String sql = "SELECT company_name FROM users INNER JOIN companies ON companies.company_id = users.company_id WHERE logged_in = 1;";
         ResultSet rs = database.RunSQLQuery(sql);
         try {
             while(rs.next()) {
-                int id = rs.getInt(1);
+                id = rs.getInt(1);
             }
         } catch(SQLException e) {
             System.out.println("Failed to select the company id: " +e.getMessage());
         }
+        return id;
     }
 }
