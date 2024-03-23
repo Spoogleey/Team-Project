@@ -158,10 +158,11 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="HomeButton" alignment="0" max="32767" attributes="0"/>
-                          <Component id="HomeButton1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="HomeButton2" alignment="0" max="32767" attributes="0"/>
-                          <Component id="HomeButton3" alignment="0" max="32767" attributes="0"/>
+                          <Component id="AddEvents" alignment="0" max="32767" attributes="0"/>
+                          <Component id="ApprovedEvents" alignment="0" max="32767" attributes="0"/>
+                          <Component id="DeniedEvents" alignment="0" max="32767" attributes="0"/>
+                          <Component id="PendingEvents" alignment="0" max="32767" attributes="0"/>
+                          <Component id="GoBack5" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -171,54 +172,61 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Component id="HomeButton" min="-2" max="-2" attributes="0"/>
+                      <Component id="AddEvents" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="HomeButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="ApprovedEvents" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="HomeButton3" min="-2" max="-2" attributes="0"/>
+                      <Component id="PendingEvents" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="HomeButton2" min="-2" max="-2" attributes="0"/>
+                      <Component id="DeniedEvents" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="GoBack5" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="HomeButton">
+            <Component class="javax.swing.JButton" name="AddEvents">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add Events"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="HomeButtonActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddEventsActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="HomeButton1">
+            <Component class="javax.swing.JButton" name="ApprovedEvents">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Approved Events"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="HomeButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ApprovedEventsActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="HomeButton2">
+            <Component class="javax.swing.JButton" name="DeniedEvents">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Denied Events"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="HomeButton2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeniedEventsActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="HomeButton3">
+            <Component class="javax.swing.JButton" name="PendingEvents">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pending Events"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="HomeButton3ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PendingEventsActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="GoBack5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="LogOut"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

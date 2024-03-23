@@ -156,10 +156,11 @@ public class AnalyticsScreen extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        HomeButton = new javax.swing.JButton();
-        HomeButton1 = new javax.swing.JButton();
-        HomeButton2 = new javax.swing.JButton();
-        HomeButton3 = new javax.swing.JButton();
+        AddEvents = new javax.swing.JButton();
+        ApprovedEvents = new javax.swing.JButton();
+        DeniedEvents = new javax.swing.JButton();
+        PendingEvents = new javax.swing.JButton();
+        GoBack5 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jProgressBar1 = new javax.swing.JProgressBar();
         jProgressBar2 = new javax.swing.JProgressBar();
@@ -221,37 +222,39 @@ public class AnalyticsScreen extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        HomeButton.setText("Add Events");
-        HomeButton.setToolTipText("");
-        HomeButton.addActionListener(new java.awt.event.ActionListener() {
+        AddEvents.setText("Add Events");
+        AddEvents.setToolTipText("");
+        AddEvents.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                HomeButtonActionPerformed(evt);
+                AddEventsActionPerformed(evt);
             }
         });
 
-        HomeButton1.setText("Approved Events");
-        HomeButton1.setToolTipText("");
-        HomeButton1.addActionListener(new java.awt.event.ActionListener() {
+        ApprovedEvents.setText("Approved Events");
+        ApprovedEvents.setToolTipText("");
+        ApprovedEvents.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                HomeButton1ActionPerformed(evt);
+                ApprovedEventsActionPerformed(evt);
             }
         });
 
-        HomeButton2.setText("Denied Events");
-        HomeButton2.setToolTipText("");
-        HomeButton2.addActionListener(new java.awt.event.ActionListener() {
+        DeniedEvents.setText("Denied Events");
+        DeniedEvents.setToolTipText("");
+        DeniedEvents.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                HomeButton2ActionPerformed(evt);
+                DeniedEventsActionPerformed(evt);
             }
         });
 
-        HomeButton3.setText("Pending Events");
-        HomeButton3.setToolTipText("");
-        HomeButton3.addActionListener(new java.awt.event.ActionListener() {
+        PendingEvents.setText("Pending Events");
+        PendingEvents.setToolTipText("");
+        PendingEvents.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                HomeButton3ActionPerformed(evt);
+                PendingEventsActionPerformed(evt);
             }
         });
+
+        GoBack5.setText("LogOut");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -260,23 +263,26 @@ public class AnalyticsScreen extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(HomeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(HomeButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(HomeButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(HomeButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(AddEvents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ApprovedEvents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(DeniedEvents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PendingEvents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(GoBack5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(HomeButton)
+                .addComponent(AddEvents)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(HomeButton1)
+                .addComponent(ApprovedEvents)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(HomeButton3)
+                .addComponent(PendingEvents)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(HomeButton2)
+                .addComponent(DeniedEvents)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(GoBack5)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -751,21 +757,33 @@ public class AnalyticsScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void HomeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_HomeButtonActionPerformed
+    private void AddEventsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddEventsActionPerformed
+       
+        this.dispose();
+        AddEventPage obj = new AddEventPage();
+        obj.setVisible(true);
+    }//GEN-LAST:event_AddEventsActionPerformed
 
-    private void HomeButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeButton1ActionPerformed
+    private void ApprovedEventsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApprovedEventsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_HomeButton1ActionPerformed
+        this.dispose();
+        ApprovedPage obj = new ApprovedPage();
+        obj.setVisible(true);
+    }//GEN-LAST:event_ApprovedEventsActionPerformed
 
-    private void HomeButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeButton2ActionPerformed
+    private void DeniedEventsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeniedEventsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_HomeButton2ActionPerformed
+        this.dispose();
+        DeniedPage obj = new DeniedPage();
+        obj.setVisible(true);
+    }//GEN-LAST:event_DeniedEventsActionPerformed
 
-    private void HomeButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeButton3ActionPerformed
+    private void PendingEventsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PendingEventsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_HomeButton3ActionPerformed
+        this.dispose();
+        PendingPage obj = new PendingPage();
+        obj.setVisible(true);
+    }//GEN-LAST:event_PendingEventsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -803,10 +821,11 @@ public class AnalyticsScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton HomeButton;
-    private javax.swing.JButton HomeButton1;
-    private javax.swing.JButton HomeButton2;
-    private javax.swing.JButton HomeButton3;
+    private javax.swing.JButton AddEvents;
+    private javax.swing.JButton ApprovedEvents;
+    private javax.swing.JButton DeniedEvents;
+    private javax.swing.JButton GoBack5;
+    private javax.swing.JButton PendingEvents;
     private javax.swing.JLabel ProgressEvent1;
     private javax.swing.JLabel ProgressEvent2;
     private javax.swing.JLabel ProgressEvent3;
