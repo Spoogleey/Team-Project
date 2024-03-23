@@ -129,7 +129,12 @@ public class ApprovedPage extends javax.swing.JFrame {
             }
         });
 
-        GoBack5.setText("LogOut");
+        GoBack5.setText("Log Out");
+        GoBack5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GoBack5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -214,6 +219,15 @@ public class ApprovedPage extends javax.swing.JFrame {
         obj.setVisible(true);
     }//GEN-LAST:event_PendingEvents1ActionPerformed
 
+    private void GoBack5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GoBack5ActionPerformed
+        // TODO add your handling code here:
+        UsersQueries manager = new UsersQueries();
+        manager.logoutUser();
+        this.dispose();
+        LoginForm obj = new LoginForm();
+        obj.setVisible(true);
+    }//GEN-LAST:event_GoBack5ActionPerformed
+
     /**
      * @param args the commandtoPending2arguments
      */
@@ -250,18 +264,12 @@ public class ApprovedPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddEvents;
     private javax.swing.JButton AddEvents1;
     private javax.swing.JButton AnalyticsEvents;
-    private javax.swing.JButton ApprovedEvents;
     private javax.swing.JTable ApprovedTable;
-    private javax.swing.JButton DeniedEvents;
     private javax.swing.JButton DeniedEvents1;
-    private javax.swing.JButton GoBack4;
     private javax.swing.JButton GoBack5;
-    private javax.swing.JButton PendingEvents;
     private javax.swing.JButton PendingEvents1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
