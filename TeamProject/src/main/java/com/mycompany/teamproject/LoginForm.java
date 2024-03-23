@@ -199,6 +199,11 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void RegisterPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterPageButtonActionPerformed
         // TODO add your handling code here:
+        UsersQueries manager = new UsersQueries();
+        manager.logoutUser();
+        this.dispose();
+        RegForm obj = new RegForm();
+        obj.setVisible(true);
     }//GEN-LAST:event_RegisterPageButtonActionPerformed
 
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed

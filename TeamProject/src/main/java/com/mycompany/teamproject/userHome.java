@@ -360,6 +360,7 @@ public class userHome extends javax.swing.JFrame {
         descriptionPanel = new javax.swing.JPanel();
         descriptionTitle = new javax.swing.JLabel();
         description = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         confirmationPanel = new javax.swing.JPanel();
         confirmationText = new javax.swing.JLabel();
         Confirm = new javax.swing.JButton();
@@ -510,11 +511,18 @@ public class userHome extends javax.swing.JFrame {
                 .addGap(129, 129, 129))
         );
 
+        jButton1.setText("Log Out");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+            .addGroup(mainPanelLayout.createSequentialGroup()
                 .addComponent(confirmFilterButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -536,6 +544,9 @@ public class userHome extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(genreCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(19, 19, 19))
+            .addGroup(mainPanelLayout.createSequentialGroup()
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -553,7 +564,9 @@ public class userHome extends javax.swing.JFrame {
                     .addComponent(confirmFilterButton))
                 .addGap(18, 18, 18)
                 .addComponent(showcasePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(77, 77, 77))
         );
 
         confirmationText.setText(" Your booking has been made! an email has been sent with your e-ticket(s)");
@@ -675,6 +688,15 @@ public class userHome extends javax.swing.JFrame {
         mainPanel.setVisible(true);
     }//GEN-LAST:event_ConfirmActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        UsersQueries manager = new UsersQueries();
+        manager.logoutUser();
+        this.dispose();
+        LoginForm obj = new LoginForm();
+        obj.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -730,6 +752,7 @@ public class userHome extends javax.swing.JFrame {
     private javax.swing.JLabel eventName;
     private javax.swing.JComboBox<String> genreCombo;
     private javax.swing.JLabel genreLabel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JComboBox<String> locationCombo;
     private javax.swing.JLabel locationLabel;
