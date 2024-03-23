@@ -100,7 +100,7 @@
                       <Component id="GoBack4" max="32767" attributes="0"/>
                       <Component id="AddEvents" alignment="0" max="32767" attributes="0"/>
                       <Component id="ApprovedEvents" alignment="0" max="32767" attributes="0"/>
-                      <Component id="DeniedEvents" alignment="0" max="32767" attributes="0"/>
+                      <Component id="AnalyticsEvents" alignment="0" max="32767" attributes="0"/>
                       <Component id="PendingEvents" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -117,7 +117,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="PendingEvents" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="DeniedEvents" min="-2" max="-2" attributes="0"/>
+                  <Component id="AnalyticsEvents" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="GoBack4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
@@ -144,13 +144,13 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ApprovedEventsActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="DeniedEvents">
+        <Component class="javax.swing.JButton" name="AnalyticsEvents">
           <Properties>
             <Property name="text" type="java.lang.String" value="Analytics"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeniedEventsActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AnalyticsEventsActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="PendingEvents">

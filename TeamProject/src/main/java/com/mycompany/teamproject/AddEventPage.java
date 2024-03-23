@@ -141,9 +141,9 @@ public class AddEventPage extends javax.swing.JFrame {
         newLocalButton = new javax.swing.JButton();
         newMusicButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        AddEvents1 = new javax.swing.JButton();
+        DeniedEvents = new javax.swing.JButton();
         ApprovedEvents1 = new javax.swing.JButton();
-        DeniedEvents1 = new javax.swing.JButton();
+        AnalyticsEvents = new javax.swing.JButton();
         PendingEvents1 = new javax.swing.JButton();
         GoBack5 = new javax.swing.JButton();
 
@@ -273,11 +273,11 @@ public class AddEventPage extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        AddEvents1.setText("Denied Events");
-        AddEvents1.setToolTipText("");
-        AddEvents1.addActionListener(new java.awt.event.ActionListener() {
+        DeniedEvents.setText("Denied Events");
+        DeniedEvents.setToolTipText("");
+        DeniedEvents.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddEvents1ActionPerformed(evt);
+                DeniedEventsActionPerformed(evt);
             }
         });
 
@@ -289,11 +289,11 @@ public class AddEventPage extends javax.swing.JFrame {
             }
         });
 
-        DeniedEvents1.setText("Analytics");
-        DeniedEvents1.setToolTipText("");
-        DeniedEvents1.addActionListener(new java.awt.event.ActionListener() {
+        AnalyticsEvents.setText("Analytics");
+        AnalyticsEvents.setToolTipText("");
+        AnalyticsEvents.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DeniedEvents1ActionPerformed(evt);
+                AnalyticsEventsActionPerformed(evt);
             }
         });
 
@@ -315,9 +315,9 @@ public class AddEventPage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(GoBack5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(AddEvents1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(DeniedEvents, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ApprovedEvents1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(DeniedEvents1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(AnalyticsEvents, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PendingEvents1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -329,9 +329,9 @@ public class AddEventPage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PendingEvents1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(AddEvents1)
+                .addComponent(DeniedEvents)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(DeniedEvents1)
+                .addComponent(AnalyticsEvents)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(GoBack5)
                 .addContainerGap(211, Short.MAX_VALUE))
@@ -436,7 +436,7 @@ public class AddEventPage extends javax.swing.JFrame {
                             .addComponent(clearButton)
                             .addComponent(cancelButton)))
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 16, Short.MAX_VALUE))
+                .addGap(0, 34, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -452,8 +452,8 @@ public class AddEventPage extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(AddEventPage, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(AddEventPage, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -558,12 +558,12 @@ public class AddEventPage extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cancelButtonActionPerformed
 
-    private void AddEvents1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddEvents1ActionPerformed
+    private void DeniedEventsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeniedEventsActionPerformed
 
         this.dispose();
-        AddEventPage obj = new AddEventPage();
+        DeniedPage obj = new DeniedPage();
         obj.setVisible(true);
-    }//GEN-LAST:event_AddEvents1ActionPerformed
+    }//GEN-LAST:event_DeniedEventsActionPerformed
 
     private void ApprovedEvents1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApprovedEvents1ActionPerformed
         // TODO add your handling code here:
@@ -572,12 +572,12 @@ public class AddEventPage extends javax.swing.JFrame {
         obj.setVisible(true);
     }//GEN-LAST:event_ApprovedEvents1ActionPerformed
 
-    private void DeniedEvents1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeniedEvents1ActionPerformed
+    private void AnalyticsEventsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnalyticsEventsActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        DeniedPage obj = new DeniedPage();
+        AnalyticsScreen obj = new AnalyticsScreen();
         obj.setVisible(true);
-    }//GEN-LAST:event_DeniedEvents1ActionPerformed
+    }//GEN-LAST:event_AnalyticsEventsActionPerformed
 
     private void PendingEvents1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PendingEvents1ActionPerformed
         // TODO add your handling code here:
@@ -623,9 +623,9 @@ public class AddEventPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AddEventPage;
-    private javax.swing.JButton AddEvents1;
+    private javax.swing.JButton AnalyticsEvents;
     private javax.swing.JButton ApprovedEvents1;
-    private javax.swing.JButton DeniedEvents1;
+    private javax.swing.JButton DeniedEvents;
     private javax.swing.JLabel DescLabel;
     private javax.swing.JLabel EventLabel;
     private javax.swing.JButton GoBack5;
