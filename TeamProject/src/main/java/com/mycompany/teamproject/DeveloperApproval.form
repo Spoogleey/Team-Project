@@ -34,9 +34,7 @@
                       <Component id="ApproveButton" min="-2" pref="115" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="DenyButton" min="-2" pref="114" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="toCompInfo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="199" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -61,7 +59,6 @@
               <Component id="EventNameLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="toCompInfo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="DenyButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="ApproveButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -144,15 +141,6 @@
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="DenyButtonMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DenyButtonActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="toCompInfo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Company information"/>
-      </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="toCompInfoMouseClicked"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="toCompInfoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="EventNameLabel">
