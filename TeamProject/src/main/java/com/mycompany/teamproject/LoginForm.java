@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -240,6 +241,8 @@ public class LoginForm extends javax.swing.JFrame {
                     
                 }
             }
+            JOptionPane.showMessageDialog(null, "Incorrect Username or Password");
+            
         }
         
         
