@@ -19,7 +19,6 @@ public class TeamProject {
         manager.logoutUser();
         LoginForm a = new LoginForm();
         a.setVisible(true);
-        
     }
     
 }
