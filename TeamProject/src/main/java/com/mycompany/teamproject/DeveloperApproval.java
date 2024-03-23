@@ -30,7 +30,7 @@ public class DeveloperApproval extends javax.swing.JFrame {
 
     public void updateApprovalTable(){
         database.Connect("events.db");
-        String sql = "SELECT event_name, company_name, event_price, min_age, max_age, event_desc FROM events INNER JOIN companies ON companies.company_id = events.company_id;";
+        String sql = "SELECT event_name, company_name, event_price, min_age, max_age, event_desc FROM events INNER JOIN companies ON companies.company_id = events.company_id WHERE approved = 0;";
         
         try{
             rs = database.RunSQLQuery(sql);
