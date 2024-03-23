@@ -112,7 +112,6 @@ public class DeveloperApproval extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         EventTable = new javax.swing.JTable();
         DenyButton = new javax.swing.JButton();
-        toCompInfo = new javax.swing.JButton();
         EventNameLabel = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         ApproveButton = new javax.swing.JButton();
@@ -155,18 +154,6 @@ public class DeveloperApproval extends javax.swing.JFrame {
             }
         });
 
-        toCompInfo.setText("Company information");
-        toCompInfo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                toCompInfoMouseClicked(evt);
-            }
-        });
-        toCompInfo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                toCompInfoActionPerformed(evt);
-            }
-        });
-
         jLabel1.setText("Event To Approve:");
 
         ApproveButton.setText("Approve Event");
@@ -190,9 +177,7 @@ public class DeveloperApproval extends javax.swing.JFrame {
                         .addComponent(ApproveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(DenyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(toCompInfo)
-                        .addGap(27, 27, 27))))
+                        .addGap(199, 199, 199))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(192, 192, 192)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,7 +196,6 @@ public class DeveloperApproval extends javax.swing.JFrame {
                 .addComponent(EventNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(toCompInfo)
                     .addComponent(DenyButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ApproveButton))
                 .addContainerGap(49, Short.MAX_VALUE))
@@ -223,17 +207,6 @@ public class DeveloperApproval extends javax.swing.JFrame {
     private void DenyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DenyButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DenyButtonActionPerformed
-
-    private void toCompInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toCompInfoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_toCompInfoActionPerformed
-
-    private void toCompInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_toCompInfoMouseClicked
-        // TODO add your handling code here:
-        this.dispose();
-        CompanyInformationPage obj = new CompanyInformationPage();
-        obj.setVisible(true);
-    }//GEN-LAST:event_toCompInfoMouseClicked
 
     private void ApproveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ApproveButtonMouseClicked
         // TODO add your handling code here:
@@ -298,6 +271,5 @@ public class DeveloperApproval extends javax.swing.JFrame {
     private javax.swing.JTable EventTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton toCompInfo;
     // End of variables declaration//GEN-END:variables
 }

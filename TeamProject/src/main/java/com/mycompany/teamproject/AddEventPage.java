@@ -45,7 +45,7 @@ public class AddEventPage extends javax.swing.JFrame {
                 Integer.parseInt(minAge.getText()), Integer.parseInt(maxAge.getText()), companyText.getSelectedIndex() + 1 );
         
         JOptionPane.showMessageDialog(null, "Event added");
-        AddEventPage.setVisible(false);
+       
     }
     
     //Add Companies into the SQLite Table
@@ -149,13 +149,14 @@ public class AddEventPage extends javax.swing.JFrame {
         LocationCombo = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         maxAge = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        maxAge1 = new javax.swing.JTextField();
-        companyLabel = new javax.swing.JLabel();
-        companyText = new javax.swing.JComboBox<>();
-        newCompButton = new javax.swing.JButton();
         newLocalButton = new javax.swing.JButton();
         newMusicButton = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        AddEvents1 = new javax.swing.JButton();
+        ApprovedEvents1 = new javax.swing.JButton();
+        DeniedEvents1 = new javax.swing.JButton();
+        PendingEvents1 = new javax.swing.JButton();
+        GoBack5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AddEvent");
@@ -262,32 +263,6 @@ public class AddEventPage extends javax.swing.JFrame {
             }
         });
 
-        jLabel10.setText("Maximum Age:");
-
-        maxAge1.setMinimumSize(new java.awt.Dimension(160, 22));
-        maxAge1.setPreferredSize(new java.awt.Dimension(160, 22));
-        maxAge1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                maxAge1ActionPerformed(evt);
-            }
-        });
-
-        companyLabel.setText("Company:");
-
-        companyText.setMinimumSize(new java.awt.Dimension(160, 22));
-
-        newCompButton.setText("Add New Company");
-        newCompButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                newCompButtonMouseClicked(evt);
-            }
-        });
-        newCompButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newCompButtonActionPerformed(evt);
-            }
-        });
-
         newLocalButton.setText("Add New Location");
         newLocalButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -307,33 +282,87 @@ public class AddEventPage extends javax.swing.JFrame {
             }
         });
 
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        AddEvents1.setText("Denied Events");
+        AddEvents1.setToolTipText("");
+        AddEvents1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddEvents1ActionPerformed(evt);
+            }
+        });
+
+        ApprovedEvents1.setText("Approved Events");
+        ApprovedEvents1.setToolTipText("");
+        ApprovedEvents1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ApprovedEvents1ActionPerformed(evt);
+            }
+        });
+
+        DeniedEvents1.setText("Analytics");
+        DeniedEvents1.setToolTipText("");
+        DeniedEvents1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeniedEvents1ActionPerformed(evt);
+            }
+        });
+
+        PendingEvents1.setText("Pending Events");
+        PendingEvents1.setToolTipText("");
+        PendingEvents1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PendingEvents1ActionPerformed(evt);
+            }
+        });
+
+        GoBack5.setText("LogOut");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(GoBack5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(AddEvents1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ApprovedEvents1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(DeniedEvents1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PendingEvents1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(ApprovedEvents1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PendingEvents1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AddEvents1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(DeniedEvents1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(GoBack5)
+                .addContainerGap(211, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout AddEventPageLayout = new javax.swing.GroupLayout(AddEventPage);
         AddEventPage.setLayout(AddEventPageLayout);
         AddEventPageLayout.setHorizontalGroup(
             AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AddEventPageLayout.createSequentialGroup()
-                .addContainerGap(388, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
                 .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddEventPageLayout.createSequentialGroup()
-                        .addComponent(addEventButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(clearButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(cancelButton))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddEventPageLayout.createSequentialGroup()
                         .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(AddEventPageLayout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addGap(18, 18, 18)
                                 .addComponent(maxAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(AddEventPageLayout.createSequentialGroup()
-                                .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel10)
-                                    .addComponent(companyLabel))
-                                .addGap(18, 18, 18)
-                                .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(maxAge1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(companyText, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(AddEventPageLayout.createSequentialGroup()
                                 .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
@@ -355,25 +384,28 @@ public class AddEventPage extends javax.swing.JFrame {
                                     .addComponent(LocationCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(minAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
-                        .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(newCompButton)
-                            .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(newMusicButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(newLocalButton, javax.swing.GroupLayout.Alignment.LEADING)))))
-                .addContainerGap())
+                        .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(newMusicButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(newLocalButton, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(13, 13, 13))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddEventPageLayout.createSequentialGroup()
+                        .addComponent(addEventButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(clearButton)
+                        .addGap(26, 26, 26)
+                        .addComponent(cancelButton)
+                        .addContainerGap())))
         );
         AddEventPageLayout.setVerticalGroup(
             AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddEventPageLayout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
-                .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddEventPageLayout.createSequentialGroup()
+            .addGroup(AddEventPageLayout.createSequentialGroup()
+                .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(AddEventPageLayout.createSequentialGroup()
                         .addComponent(newLocalButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(newMusicButton)
-                        .addGap(192, 192, 192)
-                        .addComponent(newCompButton))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddEventPageLayout.createSequentialGroup()
+                        .addGap(283, 283, 283))
+                    .addGroup(AddEventPageLayout.createSequentialGroup()
                         .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(EventLabel))
@@ -409,31 +441,30 @@ public class AddEventPage extends javax.swing.JFrame {
                         .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(maxAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9))
-                        .addGap(16, 16, 16)
+                        .addGap(36, 36, 36)
                         .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(maxAge1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))
-                        .addGap(18, 18, 18)
-                        .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(companyLabel)
-                            .addComponent(companyText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(55, 55, 55)
-                .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addEventButton)
-                    .addComponent(clearButton)
-                    .addComponent(cancelButton))
-                .addContainerGap())
+                            .addComponent(addEventButton)
+                            .addComponent(clearButton)
+                            .addComponent(cancelButton)))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(AddEventPage, javax.swing.GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(AddEventPage, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(AddEventPage, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(AddEventPage, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -496,37 +527,9 @@ public class AddEventPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_maxAgeActionPerformed
 
-    private void maxAge1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maxAge1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_maxAge1ActionPerformed
-
     private void newLocalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newLocalButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_newLocalButtonActionPerformed
-
-    private void newCompButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newCompButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_newCompButtonActionPerformed
-
-    private void newCompButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newCompButtonMouseClicked
-        // TODO add your handling code here:
-        //opens option panel for typing in new company
-        
-        compInput = JOptionPane.showInputDialog("Company Name:");
-        
-        if(compInput != null && ValidateInput(compInput)){
-            JOptionPane.showMessageDialog(null, "Valid Company Name");
-            AddingComp();
-            AddEventPage.setVisible(false);
-            AddEventPage.setVisible(true);
-            
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Invalid Company Name");
-        }
-        
-    }//GEN-LAST:event_newCompButtonMouseClicked
 
     private void newMusicButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newMusicButtonMouseClicked
         // TODO add your handling code here:
@@ -566,6 +569,34 @@ public class AddEventPage extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cancelButtonActionPerformed
 
+    private void AddEvents1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddEvents1ActionPerformed
+
+        this.dispose();
+        AddEventPage obj = new AddEventPage();
+        obj.setVisible(true);
+    }//GEN-LAST:event_AddEvents1ActionPerformed
+
+    private void ApprovedEvents1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApprovedEvents1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        ApprovedPage obj = new ApprovedPage();
+        obj.setVisible(true);
+    }//GEN-LAST:event_ApprovedEvents1ActionPerformed
+
+    private void DeniedEvents1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeniedEvents1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        DeniedPage obj = new DeniedPage();
+        obj.setVisible(true);
+    }//GEN-LAST:event_DeniedEvents1ActionPerformed
+
+    private void PendingEvents1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PendingEvents1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        PendingPage obj = new PendingPage();
+        obj.setVisible(true);
+    }//GEN-LAST:event_PendingEvents1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -603,17 +634,19 @@ public class AddEventPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AddEventPage;
+    private javax.swing.JButton AddEvents1;
+    private javax.swing.JButton ApprovedEvents1;
+    private javax.swing.JButton DeniedEvents1;
     private javax.swing.JLabel DescLabel;
     private javax.swing.JLabel EventLabel;
+    private javax.swing.JButton GoBack5;
     private javax.swing.JComboBox<String> LocationCombo;
+    private javax.swing.JButton PendingEvents1;
     private javax.swing.JButton addEventButton;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton clearButton;
-    private javax.swing.JLabel companyLabel;
-    private javax.swing.JComboBox<String> companyText;
     private javax.swing.JTextField dateText;
     private javax.swing.JTextField descText;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -621,12 +654,11 @@ public class AddEventPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField maxAge;
-    private javax.swing.JTextField maxAge1;
     private javax.swing.JTextField minAge;
     private javax.swing.JComboBox<String> musicText;
     private javax.swing.JTextField nameText;
-    private javax.swing.JButton newCompButton;
     private javax.swing.JButton newLocalButton;
     private javax.swing.JButton newMusicButton;
     private javax.swing.JTextField priceText;
