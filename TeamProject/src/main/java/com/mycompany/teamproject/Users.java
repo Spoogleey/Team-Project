@@ -11,6 +11,7 @@ package com.mycompany.teamproject;
 public class Users {
     String username;
     String password;
+    int company;
 
     public String getUsername() {
         return username;
@@ -26,5 +27,13 @@ public class Users {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getCompany() {
+        return company;
+    }
+
+    public void setCompany(int company) {
+        this.company = company;
     }
 }

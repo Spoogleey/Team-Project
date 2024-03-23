@@ -42,7 +42,7 @@ public class UsersQueries {
     // Code to select the username and password of users
     public ArrayList<Users> selectUsers() {
         database.Connect("events.db");
-        String sql = "SELECT username, password FROM users;";
+        String sql = "SELECT username, password, company_id FROM users;";
         ResultSet rs = database.RunSQLQuery(sql);
         ArrayList<Users> results = new ArrayList<>();
         try {
@@ -50,6 +50,7 @@ public class UsersQueries {
                 Users user = new Users();
                 user.setUsername(rs.getString(1));
                 user.setPassword(rs.getString(2));
+                user.setCompany(rs.getInt(3));
                 results.add(user);
             }
         } catch(SQLException e) {
