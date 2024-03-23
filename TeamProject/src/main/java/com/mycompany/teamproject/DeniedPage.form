@@ -164,8 +164,11 @@
         </Component>
         <Component class="javax.swing.JButton" name="GoBack4">
           <Properties>
-            <Property name="text" type="java.lang.String" value="LogOut"/>
+            <Property name="text" type="java.lang.String" value="Log Out"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GoBack4ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -127,7 +127,12 @@ public class DeniedPage extends javax.swing.JFrame {
             }
         });
 
-        GoBack4.setText("LogOut");
+        GoBack4.setText("Log Out");
+        GoBack4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GoBack4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -218,6 +223,15 @@ public class DeniedPage extends javax.swing.JFrame {
         PendingPage obj = new PendingPage();
         obj.setVisible(true);
     }//GEN-LAST:event_PendingEventsActionPerformed
+
+    private void GoBack4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GoBack4ActionPerformed
+        // TODO add your handling code here:
+        UsersQueries manager = new UsersQueries();
+        manager.logoutUser();
+        this.dispose();
+        LoginForm obj = new LoginForm();
+        obj.setVisible(true);
+    }//GEN-LAST:event_GoBack4ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -305,7 +305,12 @@ public class AddEventPage extends javax.swing.JFrame {
             }
         });
 
-        GoBack5.setText("LogOut");
+        GoBack5.setText("Log Out");
+        GoBack5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GoBack5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -585,6 +590,15 @@ public class AddEventPage extends javax.swing.JFrame {
         PendingPage obj = new PendingPage();
         obj.setVisible(true);
     }//GEN-LAST:event_PendingEvents1ActionPerformed
+
+    private void GoBack5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GoBack5ActionPerformed
+        // TODO add your handling code here:
+        UsersQueries manager = new UsersQueries();
+        manager.logoutUser();
+        this.dispose();
+        LoginForm obj = new LoginForm();
+        obj.setVisible(true);
+    }//GEN-LAST:event_GoBack5ActionPerformed
 
     /**
      * @param args the command line arguments
