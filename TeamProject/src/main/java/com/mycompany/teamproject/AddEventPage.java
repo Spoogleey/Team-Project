@@ -40,9 +40,9 @@ public class AddEventPage extends javax.swing.JFrame {
     public void AddingEvent(){
         
         
-        InsertEvent.addEvent(nameText.getText(), descText.getText(), venueText.getText(), LocationCombo.getSelectedIndex(), 
-                musicText.getSelectedIndex(), dateText.getText(), Double.parseDouble(priceText.getText()),
-                Integer.parseInt(minAge.getText()), Integer.parseInt(maxAge.getText()), companyText.getSelectedIndex() );
+        InsertEvent.addEvent(nameText.getText(), descText.getText(), venueText.getText(), LocationCombo.getSelectedIndex() + 1, 
+                musicText.getSelectedIndex() + 1, dateText.getText(), Double.parseDouble(priceText.getText()),
+                Integer.parseInt(minAge.getText()), Integer.parseInt(maxAge.getText()), companyText.getSelectedIndex() + 1 );
         
         JOptionPane.showMessageDialog(null, "Event added");
         AddEventPage.setVisible(false);
