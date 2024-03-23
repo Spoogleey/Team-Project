@@ -46,20 +46,18 @@ public class CompaniesQueries {
     }
     
     // Code to get the company id
-    public ArrayList<Companies> selectCompany() {
+    public int selectCompany() {
         database.Connect("events.db");
-        String sql = "SELECT company_id FROM user WHERE logged_in = 1;";
+        int id = 0;
+        String sql = "SELECT company_name FROM users INNER JOIN companies ON companies.company_id = users.company_id WHERE logged_in = 1;";
         ResultSet rs = database.RunSQLQuery(sql);
-        ArrayList<Companies> results = new ArrayList<>();
         try {
             while(rs.next()) {
-                Companies company = new Companies();
-                company.setId(rs.getInt(1));
-                results.add(company);
+                id = rs.getInt(1);
             }
         } catch(SQLException e) {
-            System.out.println("Failed to select the company id: " +e.getMessage());
+            System.out.println("Failed to select the company name: " +e.getMessage());
         }
-        return results;
+        return id;
     }
 }
