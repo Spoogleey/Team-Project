@@ -157,6 +157,9 @@ public class AnalyticsScreen extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         HomeButton = new javax.swing.JButton();
+        HomeButton1 = new javax.swing.JButton();
+        HomeButton2 = new javax.swing.JButton();
+        HomeButton3 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jProgressBar1 = new javax.swing.JProgressBar();
         jProgressBar2 = new javax.swing.JProgressBar();
@@ -218,11 +221,35 @@ public class AnalyticsScreen extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        HomeButton.setText("Home");
+        HomeButton.setText("Add Events");
         HomeButton.setToolTipText("");
         HomeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HomeButtonActionPerformed(evt);
+            }
+        });
+
+        HomeButton1.setText("Approved Events");
+        HomeButton1.setToolTipText("");
+        HomeButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeButton1ActionPerformed(evt);
+            }
+        });
+
+        HomeButton2.setText("Denied Events");
+        HomeButton2.setToolTipText("");
+        HomeButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeButton2ActionPerformed(evt);
+            }
+        });
+
+        HomeButton3.setText("Pending Events");
+        HomeButton3.setToolTipText("");
+        HomeButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeButton3ActionPerformed(evt);
             }
         });
 
@@ -232,14 +259,24 @@ public class AnalyticsScreen extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(HomeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(HomeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(HomeButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(HomeButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(HomeButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addComponent(HomeButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(HomeButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(HomeButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(HomeButton2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -694,7 +731,7 @@ public class AnalyticsScreen extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 643, Short.MAX_VALUE)
+            .addGap(0, 685, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -717,6 +754,18 @@ public class AnalyticsScreen extends javax.swing.JFrame {
     private void HomeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_HomeButtonActionPerformed
+
+    private void HomeButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HomeButton1ActionPerformed
+
+    private void HomeButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HomeButton2ActionPerformed
+
+    private void HomeButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HomeButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -755,6 +804,9 @@ public class AnalyticsScreen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton HomeButton;
+    private javax.swing.JButton HomeButton1;
+    private javax.swing.JButton HomeButton2;
+    private javax.swing.JButton HomeButton3;
     private javax.swing.JLabel ProgressEvent1;
     private javax.swing.JLabel ProgressEvent2;
     private javax.swing.JLabel ProgressEvent3;

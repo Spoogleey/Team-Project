@@ -40,9 +40,9 @@ public class AddEventPage extends javax.swing.JFrame {
     public void AddingEvent(){
         
         
-        InsertEvent.addEvent(nameText.getText(), descText.getText(), venueText.getText(), LocationCombo.getSelectedIndex(), 
-                musicText.getSelectedIndex(), dateText.getText(), Double.parseDouble(priceText.getText()),
-                Integer.parseInt(minAge.getText()), Integer.parseInt(maxAge.getText()), companyText.getSelectedIndex() );
+        InsertEvent.addEvent(nameText.getText(), descText.getText(), venueText.getText(), LocationCombo.getSelectedIndex()+1, 
+                musicText.getSelectedIndex()+1, dateText.getText(), Double.parseDouble(priceText.getText()),
+                Integer.parseInt(minAge.getText()), Integer.parseInt(maxAge.getText()), companyText.getSelectedIndex()+1 );
         
         JOptionPane.showMessageDialog(null, "Event added");
         AddEventPage.setVisible(false);
@@ -312,7 +312,7 @@ public class AddEventPage extends javax.swing.JFrame {
         AddEventPageLayout.setHorizontalGroup(
             AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AddEventPageLayout.createSequentialGroup()
-                .addContainerGap(388, Short.MAX_VALUE)
+                .addContainerGap(369, Short.MAX_VALUE)
                 .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddEventPageLayout.createSequentialGroup()
                         .addComponent(addEventButton)
@@ -365,7 +365,7 @@ public class AddEventPage extends javax.swing.JFrame {
         AddEventPageLayout.setVerticalGroup(
             AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddEventPageLayout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(9, Short.MAX_VALUE)
                 .addGroup(AddEventPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddEventPageLayout.createSequentialGroup()
                         .addComponent(newLocalButton)

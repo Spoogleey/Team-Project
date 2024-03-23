@@ -28,7 +28,7 @@ public class PendingPage extends javax.swing.JFrame {
     private void UpdatePendingTable(){
         database.Connect("events.db");
         //Query for pending events
-        String sql = "SELECT * FROM events WHERE approved=0";
+        String sql = "SELECT * FROM events WHERE approved=0 AND company_id=1";
         try{
             rs = database.RunSQLQuery(sql);
         

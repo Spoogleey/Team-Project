@@ -35,7 +35,7 @@ public class DeniedPage extends javax.swing.JFrame {
             while(rs.next()){
                 
                 String Event = rs.getString("event_name");
-                String Reason = String.valueOf(rs.getInt("comment"));
+                String Reason = String.valueOf(rs.getString("comment"));
                 
                 //String array to store the data in the jtable
                 
