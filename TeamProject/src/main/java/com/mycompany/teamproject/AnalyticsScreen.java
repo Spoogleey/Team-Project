@@ -39,8 +39,9 @@ public class AnalyticsScreen extends javax.swing.JFrame {
         double totalProfit = 0;
         double totalSales = 0;
         int i = 0;
+        CompaniesQueries company = new CompaniesQueries(); // Create an instance of AnalyticsManager
+        String companyName = company.selectLoggedUser();
         AnalyticsQueries manager = new AnalyticsQueries(); // Create an instance of AnalyticsManager
-        String companyName = "Melody Mingle"; // The company name you're interested in
         ArrayList<Analytics> analyticsData = manager.getAnalytics(companyName); // Call the method
         Object rowData[] = new Object[100];
         // Assuming you want to print the fetched data

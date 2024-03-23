@@ -30,17 +30,19 @@ public class CompaniesQueries {
     }
     
     // Code to select companies with users logged in
-    public void selectLoggedUser() {
+    public String selectLoggedUser() {
         database.Connect("events.db");
+        String name = "";
         String sql = "SELECT company_name FROM users INNER JOIN companies ON companies.company_id = users.company_id WHERE logged_in = 1;";
         ResultSet rs = database.RunSQLQuery(sql);
         try {
             while(rs.next()) {
-                String name = rs.getString(1);
+                name = rs.getString(1);
             }
         } catch(SQLException e) {
             System.out.println("Failed to select the company name: " +e.getMessage());
         }
+        return name;
     }
     
     // Code to get the company id
