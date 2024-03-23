@@ -26,7 +26,7 @@ public class ApprovedPage extends javax.swing.JFrame {
      private void UpdateApprovedTable(){
         database.Connect("events.db");
         //Query for pending events
-        String sql = "SELECT * FROM events WHERE approved=1";
+        String sql = "SELECT * FROM events WHERE approved=1 AND company_id=1";
         try{
             rs = database.RunSQLQuery(sql);
         
@@ -177,7 +177,7 @@ public class ApprovedPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         this.dispose();
-        ApprovedPage obj = new ApprovedPage();
+        PendingPage obj = new PendingPage();
         obj.setVisible(true);
     }//GEN-LAST:event_toPending2MouseClicked
 

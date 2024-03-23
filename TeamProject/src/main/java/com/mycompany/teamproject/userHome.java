@@ -100,16 +100,23 @@ public class userHome extends javax.swing.JFrame {
            System.out.println("No more previous options");
        //checks if the next row number is available is not, disables next button    
        }
+       else{
+           previousButton.setEnabled(true);
+       }
        if (!resultsCache.absolute(rowNum+1)){
            nextButton.setEnabled(false);
            //for testing purposes in output
            System.out.println("No more forward options");
        }
-       if ("No events found ".equals(eventName.getText())){
+       else {
+           nextButton.setEnabled(true);
+       }
+       if("No events found ".equals(eventName.getText())){
             bookButton.setEnabled(false);
         }
        else{
            bookButton.setEnabled(true);
+         
        }
     }
     
@@ -262,7 +269,8 @@ public class userHome extends javax.swing.JFrame {
                 + "AND music_name = '"+genrePref +"' "
                 + "AND event_price <= "+pricePref
                 + " AND min_age >= "+minAgePref
-                + " AND max_age <= "+maxAgePref+ " ;"
+                + " AND max_age <= "+maxAgePref 
+                + " AND approved = 1;"
                 ;
        
        
@@ -270,6 +278,15 @@ public class userHome extends javax.swing.JFrame {
         System.out.println(sql);
        return sql;
        
+    }
+    
+    private void resultSetTest() throws SQLException{
+        String sql = getFilters(); 
+        ResultSet test = database.RunSQLQuery(sql);
+        
+        while(test.next()){
+            
+        }
     }
     
     private void setLabels() throws SQLException{ 
