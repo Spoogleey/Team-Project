@@ -216,6 +216,7 @@ public class LoginForm extends javax.swing.JFrame {
         else{
             UsersQueries manager = new UsersQueries(); // Create an instance of AnalyticsManager
             ArrayList<Users> usersData = manager.selectUsers();
+            int i = 0;
             for(Users users : usersData) {
                 String username = users.getUsername();
                 String password = users.getPassword();
@@ -238,10 +239,10 @@ public class LoginForm extends javax.swing.JFrame {
                     } catch (SQLException ex) {
                         Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    
                 }
+                   
             }
-            JOptionPane.showMessageDialog(null, "Incorrect Username or Password");
+            
             
         }
         
