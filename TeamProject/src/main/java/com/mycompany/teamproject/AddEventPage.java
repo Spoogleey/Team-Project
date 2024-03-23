@@ -476,6 +476,8 @@ public class AddEventPage extends javax.swing.JFrame {
     private void addEventButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addEventButtonMouseClicked
         // TODO add your handling code here:
         AddingEvent();
+            
+        
     }//GEN-LAST:event_addEventButtonMouseClicked
 
     private void clearButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearButtonMouseClicked
