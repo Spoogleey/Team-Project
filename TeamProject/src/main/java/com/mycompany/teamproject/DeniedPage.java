@@ -28,7 +28,9 @@ public class DeniedPage extends javax.swing.JFrame {
     private void UpdateDeniedTable(){
         database.Connect("events.db");
         //Query for pending events
-        String sql = "SELECT * FROM denied_events";
+        CompaniesQueries company = new CompaniesQueries(); // Create an instance of AnalyticsManager
+        int companyID = company.selectCompany();
+        String sql = "SELECT * FROM denied_events WHERE company_id="+companyID+";";
         try{
             rs = database.RunSQLQuery(sql);
         

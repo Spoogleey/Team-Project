@@ -21,7 +21,7 @@ public class AddEventPage extends javax.swing.JFrame {
         database = new DatabaseConnection();
         updateGenreCombo();
         updatelocationCombo();
-        updateCompCombo();
+        
         
     }
     
@@ -38,11 +38,12 @@ public class AddEventPage extends javax.swing.JFrame {
     //Add Events into the SQLite Table
     
     public void AddingEvent(){
-        
+        CompaniesQueries company = new CompaniesQueries(); // Create an instance of AnalyticsManager
+        int companyID = company.selectCompany();
         
         InsertEvent.addEvent(nameText.getText(), descText.getText(), venueText.getText(), LocationCombo.getSelectedIndex() + 1, 
                 musicText.getSelectedIndex() + 1, dateText.getText(), Double.parseDouble(priceText.getText()),
-                Integer.parseInt(minAge.getText()), Integer.parseInt(maxAge.getText()), companyText.getSelectedIndex() + 1 );
+                Integer.parseInt(minAge.getText()), Integer.parseInt(maxAge.getText()), companyID);
         
         JOptionPane.showMessageDialog(null, "Event added");
        
@@ -99,18 +100,6 @@ public class AddEventPage extends javax.swing.JFrame {
         
     }
     
-    private void updateCompCombo(){
-        database.Connect("events.db");
-        String sql = "SELECT * FROM companies";
-        try{
-            rs = database.RunSQLQuery(sql);
-            while(rs.next()){
-                companyText.addItem(rs.getString("company_name"));
-            }
-        } catch (Exception e){  
-        }
-        
-    }
     
     
  
@@ -496,7 +485,7 @@ public class AddEventPage extends javax.swing.JFrame {
         venueText.setText("");
         minAge.setText("");
         minAge.setText("");
-        companyText.setSelectedItem(null);
+        
     }//GEN-LAST:event_clearButtonMouseClicked
 
     private void addEventButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEventButtonActionPerformed

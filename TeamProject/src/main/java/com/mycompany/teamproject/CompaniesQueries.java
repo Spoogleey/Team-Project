@@ -49,7 +49,7 @@ public class CompaniesQueries {
     public int selectCompany() {
         database.Connect("events.db");
         int id = 0;
-        String sql = "SELECT company_name FROM users INNER JOIN companies ON companies.company_id = users.company_id WHERE logged_in = 1;";
+        String sql = "SELECT company_id FROM users WHERE logged_in = 1;";
         ResultSet rs = database.RunSQLQuery(sql);
         try {
             while(rs.next()) {

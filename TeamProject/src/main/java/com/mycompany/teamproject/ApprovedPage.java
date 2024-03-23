@@ -26,7 +26,9 @@ public class ApprovedPage extends javax.swing.JFrame {
      private void UpdateApprovedTable(){
         database.Connect("events.db");
         //Query for pending events
-        String sql = "SELECT * FROM events WHERE approved=1 AND company_id=1";
+        CompaniesQueries company = new CompaniesQueries(); // Create an instance of AnalyticsManager
+        int companyID = company.selectCompany();
+        String sql = "SELECT * FROM events WHERE approved=1 AND company_id="+companyID+";";
         try{
             rs = database.RunSQLQuery(sql);
         
