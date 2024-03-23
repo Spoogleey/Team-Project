@@ -77,8 +77,8 @@ public class ApprovedPage extends javax.swing.JFrame {
         ApprovedTable = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         AddEvents1 = new javax.swing.JButton();
-        ApprovedEvents1 = new javax.swing.JButton();
         DeniedEvents1 = new javax.swing.JButton();
+        AnalyticsEvents = new javax.swing.JButton();
         PendingEvents1 = new javax.swing.JButton();
         GoBack5 = new javax.swing.JButton();
 
@@ -105,19 +105,19 @@ public class ApprovedPage extends javax.swing.JFrame {
             }
         });
 
-        ApprovedEvents1.setText("Approved Events");
-        ApprovedEvents1.setToolTipText("");
-        ApprovedEvents1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ApprovedEvents1ActionPerformed(evt);
-            }
-        });
-
-        DeniedEvents1.setText("Analytics");
+        DeniedEvents1.setText("Denied Events");
         DeniedEvents1.setToolTipText("");
         DeniedEvents1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeniedEvents1ActionPerformed(evt);
+            }
+        });
+
+        AnalyticsEvents.setText("Analytics");
+        AnalyticsEvents.setToolTipText("");
+        AnalyticsEvents.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AnalyticsEventsActionPerformed(evt);
             }
         });
 
@@ -140,8 +140,8 @@ public class ApprovedPage extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(GoBack5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(AddEvents1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ApprovedEvents1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(DeniedEvents1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(AnalyticsEvents, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PendingEvents1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -151,11 +151,11 @@ public class ApprovedPage extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(AddEvents1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ApprovedEvents1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PendingEvents1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(DeniedEvents1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AnalyticsEvents)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(GoBack5)
                 .addContainerGap(257, Short.MAX_VALUE))
@@ -193,19 +193,19 @@ public class ApprovedPage extends javax.swing.JFrame {
         obj.setVisible(true);
     }//GEN-LAST:event_AddEvents1ActionPerformed
 
-    private void ApprovedEvents1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApprovedEvents1ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        ApprovedPage obj = new ApprovedPage();
-        obj.setVisible(true);
-    }//GEN-LAST:event_ApprovedEvents1ActionPerformed
-
     private void DeniedEvents1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeniedEvents1ActionPerformed
         // TODO add your handling code here:
         this.dispose();
         DeniedPage obj = new DeniedPage();
         obj.setVisible(true);
     }//GEN-LAST:event_DeniedEvents1ActionPerformed
+
+    private void AnalyticsEventsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnalyticsEventsActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        AnalyticsScreen obj = new AnalyticsScreen();
+        obj.setVisible(true);
+    }//GEN-LAST:event_AnalyticsEventsActionPerformed
 
     private void PendingEvents1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PendingEvents1ActionPerformed
         // TODO add your handling code here:
@@ -252,8 +252,8 @@ public class ApprovedPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddEvents;
     private javax.swing.JButton AddEvents1;
+    private javax.swing.JButton AnalyticsEvents;
     private javax.swing.JButton ApprovedEvents;
-    private javax.swing.JButton ApprovedEvents1;
     private javax.swing.JTable ApprovedTable;
     private javax.swing.JButton DeniedEvents;
     private javax.swing.JButton DeniedEvents1;

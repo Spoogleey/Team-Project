@@ -69,7 +69,7 @@ public class DeniedPage extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         AddEvents = new javax.swing.JButton();
         ApprovedEvents = new javax.swing.JButton();
-        DeniedEvents = new javax.swing.JButton();
+        AnalyticsEvents = new javax.swing.JButton();
         PendingEvents = new javax.swing.JButton();
         GoBack4 = new javax.swing.JButton();
 
@@ -111,11 +111,11 @@ public class DeniedPage extends javax.swing.JFrame {
             }
         });
 
-        DeniedEvents.setText("Analytics");
-        DeniedEvents.setToolTipText("");
-        DeniedEvents.addActionListener(new java.awt.event.ActionListener() {
+        AnalyticsEvents.setText("Analytics");
+        AnalyticsEvents.setToolTipText("");
+        AnalyticsEvents.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DeniedEventsActionPerformed(evt);
+                AnalyticsEventsActionPerformed(evt);
             }
         });
 
@@ -139,7 +139,7 @@ public class DeniedPage extends javax.swing.JFrame {
                     .addComponent(GoBack4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(AddEvents, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ApprovedEvents, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(DeniedEvents, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(AnalyticsEvents, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PendingEvents, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -153,7 +153,7 @@ public class DeniedPage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PendingEvents)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(DeniedEvents)
+                .addComponent(AnalyticsEvents)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(GoBack4)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -205,12 +205,12 @@ public class DeniedPage extends javax.swing.JFrame {
         obj.setVisible(true);
     }//GEN-LAST:event_ApprovedEventsActionPerformed
 
-    private void DeniedEventsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeniedEventsActionPerformed
+    private void AnalyticsEventsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnalyticsEventsActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        DeniedPage obj = new DeniedPage();
+        AnalyticsScreen obj = new AnalyticsScreen();
         obj.setVisible(true);
-    }//GEN-LAST:event_DeniedEventsActionPerformed
+    }//GEN-LAST:event_AnalyticsEventsActionPerformed
 
     private void PendingEventsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PendingEventsActionPerformed
         // TODO add your handling code here:
@@ -256,8 +256,8 @@ public class DeniedPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddEvents;
+    private javax.swing.JButton AnalyticsEvents;
     private javax.swing.JButton ApprovedEvents;
-    private javax.swing.JButton DeniedEvents;
     private javax.swing.JButton GoBack4;
     private javax.swing.JButton PendingEvents;
     private javax.swing.JTable PendingTable;

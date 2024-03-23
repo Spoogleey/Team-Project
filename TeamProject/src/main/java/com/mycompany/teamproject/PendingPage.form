@@ -108,8 +108,8 @@
                       <Component id="GoBack5" alignment="1" max="32767" attributes="0"/>
                       <Component id="AddEvents1" alignment="0" max="32767" attributes="0"/>
                       <Component id="ApprovedEvents1" alignment="0" max="32767" attributes="0"/>
-                      <Component id="DeniedEvents1" alignment="0" max="32767" attributes="0"/>
-                      <Component id="PendingEvents1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="AnalyticsEvents" alignment="0" max="32767" attributes="0"/>
+                      <Component id="DeniedEvents" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -123,9 +123,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="ApprovedEvents1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="PendingEvents1" min="-2" max="-2" attributes="0"/>
+                  <Component id="DeniedEvents" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="DeniedEvents1" min="-2" max="-2" attributes="0"/>
+                  <Component id="AnalyticsEvents" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="GoBack5" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="309" max="32767" attributes="0"/>
@@ -152,22 +152,22 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ApprovedEvents1ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="DeniedEvents1">
+        <Component class="javax.swing.JButton" name="AnalyticsEvents">
           <Properties>
             <Property name="text" type="java.lang.String" value="Analytics"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeniedEvents1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AnalyticsEventsActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="PendingEvents1">
+        <Component class="javax.swing.JButton" name="DeniedEvents">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Pending Events"/>
+            <Property name="text" type="java.lang.String" value="Denied Events"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PendingEvents1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeniedEventsActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="GoBack5">
